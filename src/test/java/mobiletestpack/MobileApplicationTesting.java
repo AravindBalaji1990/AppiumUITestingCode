@@ -44,6 +44,7 @@ public class MobileApplicationTesting {
     // driver.findElement(AppiumBy.accessibilityId("Access'ibility")).click();
 
         driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Access'ibility\"]\n")).click();
+//        driver.findElement(AppiumBy.cssSelector("")).click();
     }
 
     @Test
@@ -65,6 +66,7 @@ public class MobileApplicationTesting {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(2500));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         driver.findElement(By.xpath("//XCUIElementTypeButton[@name=\"plus.circle\"]\n")).click();
+//        driver.findElement(By.cssSelector("")).click();
 
     }
 
