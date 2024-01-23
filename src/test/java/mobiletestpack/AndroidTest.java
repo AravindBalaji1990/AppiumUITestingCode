@@ -33,8 +33,10 @@ public class AndroidTest {
 
         Thread.sleep(5000);
 
-        System.out.println("check the display :"+ driver.findElement(AppiumBy.cssSelector("android.view.ViewGroup[content-desc='store item'] android.widget.TextView[text='Sauce Labs Backpack']")).isDisplayed());
-        System.out.println("check the display :"+ driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='store item']//android.widget.TextView[@text='Sauce Labs Backpack']")).isDisplayed());
+//        System.out.println("check the display :"+ driver.findElement(AppiumBy.cssSelector("android.view.ViewGroup[content-desc='store item'] android.widget.TextView[text='Sauce Labs Backpack']")).isDisplayed());
+//        System.out.println("check the display :"+ driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='store item']//android.widget.TextView[@text='Sauce Labs Backpack']")).isDisplayed());
+//        System.out.println("check the display :"+ driver.findElements(AppiumBy.cssSelector("android.widget.TextView[text*='Backpack']")).size());
+        System.out.println(driver.findElements(AppiumBy.cssSelector("android.view.ViewGroup[content-desc='store Item']>android.view.ViewGroup>android.widget.ImageView:first-child")).size());
 
     }
 }
