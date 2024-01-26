@@ -1,7 +1,6 @@
 package mobiletestpack;
 
 
-
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -39,9 +38,9 @@ public class MobileApplicationTesting {
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
 
         // calling the andorid driver to run the app
-        AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"),options);
-    // dont use By class in andoird will not identify instead use AppiumBy
-    // driver.findElement(AppiumBy.accessibilityId("Access'ibility")).click();
+        AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
+        // dont use By class in andoird will not identify instead use AppiumBy
+        // driver.findElement(AppiumBy.accessibilityId("Access'ibility")).click();
 
         driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Access'ibility\"]\n")).click();
 //        driver.findElement(AppiumBy.cssSelector("")).click();
@@ -55,7 +54,7 @@ public class MobileApplicationTesting {
         options.setAppPushTimeout(Duration.ofMillis(50000));
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/ios-app.zip");
         options.setBundleId("com.moataz.dailycheck");
-        IOSDriver driver = new IOSDriver(new URL("http://127.0.0.1:4723"),options);
+        IOSDriver driver = new IOSDriver(new URL("http://127.0.0.1:4723"), options);
 
         // static sleeper it will wait till the time is over
 //        Thread.sleep(5000);

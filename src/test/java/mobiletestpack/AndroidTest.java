@@ -29,7 +29,10 @@ public class AndroidTest {
         Thread.sleep(3000);
         System.out.println("is displayed check : " + driver.findElement(AppiumBy.cssSelector("android.widget.TextView[text='Sauce Labs Backpack']")).isDisplayed());
         Thread.sleep(3000);
-        System.out.println("is enabled check : " + driver.findElement(AppiumBy.cssSelector("android.widget.TextView[text='Sauce Labs Backpack'][content-desc='store item text']")).isEnabled());
+//        options.setAppPackage("io.appium.android.apis");
+//        options.setAppActivity("io.appium.android.apis.ApiDemos");
+
+//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");        System.out.println("is enabled check : " + driver.findElement(AppiumBy.cssSelector("android.widget.TextView[text='Sauce Labs Backpack'][content-desc='store item text']")).isEnabled());
 
         Thread.sleep(5000);
 
