@@ -7,6 +7,7 @@ import io.appium.java_client.remote.AutomationName;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
@@ -52,6 +53,10 @@ public class HandlingGesturesDemo_DoubleTap {
                 .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
                 .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
         driver.perform(Collections.singletonList(seq));
+
+        //alternative
+//        Actions act = new Actions(driver);
+//        act.doubleClick().build().perform();
     }
 
     public static Point getCenterElement(Point location, Dimension dim) {

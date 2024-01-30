@@ -44,8 +44,10 @@ public class HandlingGesturesDemo_SingleTap {
 //        element.click();
 
         //alternative way
-//        Actions act = new Actions(driver);
-//        act.click(element).build().perform();
+        Actions act = new Actions(driver);
+        act.click(element).build().perform();
+
+        act.doubleClick().build().perform();
 
 
         //Perform a tap action

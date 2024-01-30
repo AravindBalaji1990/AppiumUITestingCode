@@ -3,6 +3,8 @@ package handlinggestures;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.options.XCUITestOptions;
 import io.appium.java_client.remote.AutomationName;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
@@ -19,28 +21,29 @@ import java.util.Collections;
 
 public class HandlingGestureDemo_Zoom {
 
-    public static void main(String[] args) throws MalformedURLException {
-        UiAutomator2Options options = new UiAutomator2Options();
-        options.setPlatformName("Android");
-        options.setDeviceName("emulator-5554");
-        options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
-        options.setAppPackage("com.saucelabs.mydemoapp.rn");
-        options.setAppActivity("com.saucelabs.mydemoapp.rn.MainActivity");
-        options.setAppWaitForLaunch(true);
-        options.setAppWaitDuration(Duration.ofMillis(50000));
-//        options.setAppPackage("io.appium.android.apis");
-//        options.setAppActivity("io.appium.android.apis.ApiDemos");
+    public static void main(String[] args) throws MalformedURLException, InterruptedException {
+        XCUITestOptions options = new XCUITestOptions();
+        options.setDeviceName("iPhone 15");
+//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/ios-app.zip");
+//        options.setAutoWebview(true);
+        options.setForceAppLaunch(true);
 
-//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
+//        options.setBundleId("com.moataz.dailycheck");
+        options.setBundleId("com.saucelabs.mydemoapp.rn");
 
-        // calling the andorid driver to run the app̵
-        AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
+        IOSDriver driver = new IOSDriver(new URL("http://127.0.0.1:4723"), options);
+        Thread.sleep(5000);
 
-//        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView"));
-        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup/child::android.widget.TextView[@content-desc='store item text']/preceding-sibling::android.widget.ImageView"));
+        WebElement element1 = driver.findElement(AppiumBy.xpath("//XCUIElementTypeButton[@name='tab bar option menu']"));
+        element1.click();
+        WebElement element2 = driver.findElement(AppiumBy.xpath("//XCUIElementTypeOther[@name='menu item drawing']"));
+        element2.click();
 
-        Point centerofelememnt = getCenterElement(element.getLocation(),element.getSize());
+        Thread.sleep(5000);
+
+        WebElement element3 = driver.findElement(AppiumBy.xpath("//XCUIElementTypeOther[@name='Signature Pad demo']"));
+
+        Point centerofelememnt = getCenterElement(element3.getLocation(),element3.getSize());
 
         PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "touch1");
         Sequence seq1 = new Sequence(finger1, 1)
@@ -50,7 +53,7 @@ public class HandlingGestureDemo_Zoom {
                 .addAction(finger1.createPointerMove(Duration.ofMillis(200), PointerInput.Origin.viewport(),centerofelememnt.getX()+100, centerofelememnt.getY()-100))
                 .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
-        PointerInput finger2 = new PointerInput(PointerInput.Kind.TOUCH, "touch1");
+        PointerInput finger2 = new PointerInput(PointerInput.Kind.TOUCH, "touch2");
         Sequence seq2 = new Sequence(finger2, 1)
                 .addAction(finger2.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelememnt))
                 .addAction(finger2.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
