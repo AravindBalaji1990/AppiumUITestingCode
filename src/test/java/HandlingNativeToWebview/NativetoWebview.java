@@ -7,6 +7,7 @@ import io.appium.java_client.remote.AutomationName;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
@@ -27,6 +28,7 @@ public class NativetoWebview {
         options.setDeviceName("emulator-5554");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
+//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android-MyDemoAppRN.1.3.0.build-244.apk");
 
 //        options.setAppWaitDuration(Duration.ofMillis(50000));
         options.setAppPackage("com.saucelabs.mydemoapp.rn");
@@ -47,7 +49,9 @@ public class NativetoWebview {
 
         driver.findElement(AppiumBy.xpath("//android.widget.EditText[@content-desc=\"URL input field\"]")).sendKeys("https://www.google.com");
         Thread.sleep(5000);
+        ;
         WebElement element = driver.findElement(AppiumBy.accessibilityId("Go To Site button"));
+//        element.click();
         //we are trying to identify the element position
         // to do a tap
         Point location = element.getLocation();
@@ -55,18 +59,31 @@ public class NativetoWebview {
         Dimension size = element.getSize();
         System.out.println("the size the element "+ size);
         Point centerofelement = getCenterElement(location, size);
-
-        // we need to perform a touch action
+//        System.out.println("where i am " +driver.getContext());
+//        System.out.println("where i am " +driver.getContextHandles());
+//
+//        // we need to perform a touch action
         PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
         Sequence seq = new Sequence(touchaction1, 1)
+                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelement))
+                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
+                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
+                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        driver.perform(Collections.singletonList(seq));
+        Thread.sleep(10000);
+
+        PointerInput touchaction2 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
+        Sequence seq2 = new Sequence(touchaction1, 1)
                 .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),centerofelement))
                 .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
                 .addAction(new Pause(touchaction1,Duration.ofMillis(500)))
                 .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(Collections.singletonList(seq));
-
-
-
+        driver.perform(Collections.singletonList(seq2));
+        Thread.sleep(30000);
+        System.out.println("where i am " +driver.getContext());
+        System.out.println("where i am " +driver.getContextHandles());
         //check the current context
         driver.getContext();
         //check for any other webview available

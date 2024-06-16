@@ -23,11 +23,13 @@ public class HandlingGesturesDemo_SingleTap {
     public static void main(String[] args) throws MalformedURLException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("emulator-5554");
+        options.setDeviceName("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
-        options.setAppPackage("com.saucelabs.mydemoapp.rn");
-        options.setAppActivity("com.saucelabs.mydemoapp.rn.MainActivity");
+//        options.setAppPackage("com.saucelabs.mydemoapp.rn");
+        options.setAppPackage("io.appium.android.apis");
+//        options.setAppActivity("com.saucelabs.mydemoapp.rn.MainActivity");
+        options.setAppActivity("io.appium.android.apis.ApiDemos");
         options.setAppWaitForLaunch(true);
         options.setAppWaitDuration(Duration.ofMillis(50000));
 
@@ -37,17 +39,18 @@ public class HandlingGesturesDemo_SingleTap {
 
 
 //        driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView")).click();
-        System.out.println("to chec kthe attribute vbalue :" +driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']")).getAttribute("content-desc"));
-        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView"));
+//        System.out.println("to chec kthe attribute vbalue :" +driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']")).getAttribute("content-desc"));
+//        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView"));
+        WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"));
 
         // alternative way
 //        element.click();
 
         //alternative way
-        Actions act = new Actions(driver);
-        act.click(element).build().perform();
-
-        act.doubleClick().build().perform();
+//        Actions act = new Actions(driver);
+//        act.click(element).build().perform();
+//
+//        act.doubleClick().build().perform();
 
 
         //Perform a tap action

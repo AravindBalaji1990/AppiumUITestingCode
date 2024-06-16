@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.remote.AutomationName;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
@@ -19,9 +20,13 @@ import java.util.Collections;
 public class HandlingGestureDemo_DragandDrop_Alternative {
 
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
+        AppiumDriverLocalService service =AppiumDriverLocalService.buildDefaultService();
+        service.start();
+        System.out.println(service.isRunning());
+
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("H0C9FI1LV01B0300012");
+        options.setDeviceName("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
 //        options.setAppPackage("com.saucelabs.mydemoapp.rn");
@@ -53,15 +58,11 @@ public class HandlingGestureDemo_DragandDrop_Alternative {
 
         //Drag and drop alternative
         Actions act = new Actions(driver);
-//        act.clickAndHold(source).moveToElement(destination).build().perform();
+        act.clickAndHold(source).moveToElement(destination).build().perform();
 
-        act.dragAndDrop(source, destination).build().perform();
+//        act.dragAndDrop(source, destination).build().perform();
 
     System.out.println(driver.findElement(AppiumBy.id("io.appium.android.apis:id/drag_result_text")).isDisplayed());
-
-    }
-    public static Point getCenterElement(Point location, Dimension dim) {
-        return new Point(location.getX() + dim.getWidth() / 2, location.getY() + dim.getHeight() / 2);
 
     }
 }

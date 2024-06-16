@@ -20,42 +20,52 @@ import java.time.Duration;
 import java.util.Collections;
 
 public class HandlingGesturesDemo_LongPress {
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("emulator-5554");
+        options.setDeviceName("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
+//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
         options.setAppWaitForLaunch(true);
         options.setAppWaitDuration(Duration.ofMillis(50000));
-//        options.setAppPackage("io.appium.android.apis");
+        options.setAppPackage("io.appium.android.apis");
 //        options.setAppActivity("io.appium.android.apis.ApiDemos");
+        options.setAppActivity("io.appium.android.apis.view.ExpandableList1");
 
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
 
         // calling the andorid driver to run the app
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
-        driver.findElement(AppiumBy.xpath("//*[@content-desc='Views']")).click();
-        driver.findElement(AppiumBy.xpath("//*[@content-desc='Expandable lists']")).click();
+        Thread.sleep(5000);
+//        driver.findElement(AppiumBy.xpath("//*[@content-desc='Views']")).click();
+        Thread.sleep(5000);
+//        driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Expandable Lists']")).click();
 
-        WebElement element =   driver.findElement(AppiumBy.xpath("//*[@content-desc='Expandable lists']"));
+//        driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='1. Custom Adapter']")).click();
+
+        WebElement element =   driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='People Names']"));
+
         //long press gesture handling
-        Point location = element.getLocation();
-        Dimension size = element.getSize();
-        Point centerofelement = getCenterElement(location, size);
+//        Point location = element.getLocation();
+//        Dimension size = element.getSize();
+//        Point centerofelement = getCenterElement(location, size);
+//
+//
+//        PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
+//        Sequence seq = new Sequence(touchaction1, 1)
+//                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),centerofelement))
+//                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+//                .addAction(new Pause(touchaction1,Duration.ofSeconds(3)))
+//                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+//        driver.perform(Collections.singletonList(seq));
 
-
-        PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
-        Sequence seq = new Sequence(touchaction1, 1)
-                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),centerofelement))
-                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(touchaction1,Duration.ofSeconds(3)))
-                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(Collections.singletonList(seq));
+        Thread.sleep(3000);
 
         //Alternative way using Actions class
         Actions act = new Actions(driver);
         act.clickAndHold(element).pause(Duration.ofSeconds(4)).build().perform();
+
+        System.out.println(driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id=\"android:id/title\" and @text=\"Sample menu\"]")).isDisplayed());
 
     }
 

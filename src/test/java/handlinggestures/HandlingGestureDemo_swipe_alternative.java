@@ -5,8 +5,10 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.remote.AutomationName;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
@@ -22,7 +24,7 @@ public class HandlingGestureDemo_swipe_alternative {
     public static void main(String[] args) throws MalformedURLException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("emulator-5554");
+        options.setDeviceName("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
 //        options.setAppPackage("com.saucelabs.mydemoapp.rn");
@@ -42,16 +44,23 @@ public class HandlingGestureDemo_swipe_alternative {
         element.click();
 
         // alternative1
-//        driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"WebView\").instance(0))")).click();
+//        driver.findElement(new AppiumBy.ByAndroidUIAutomator
+//                ("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"WebView\").instance(0))")).click();
 
 
         // alternative2
-        WebElement elementtoscroll = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"WebView\"]"));
-        HashMap<String , Object> scrolldemo = new HashMap<>();
-        scrolldemo.put("elementtoscroll",elementtoscroll.getText());
-        scrolldemo.put("direction", "down");
-        scrolldemo.put("percent", 1);
-        driver.executeScript("mobile: scrollGesture", scrolldemo);
+//        WebElement elementtoscroll = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"WebView\"]"));
+//        HashMap<String , Object> scrolldemo = new HashMap<>();
+//        scrolldemo.put("elementtoscroll",elementtoscroll.getText());
+//        scrolldemo.put("direction", "down");
+//        scrolldemo.put("percent", 1);
+//        driver.executeScript("mobile: scrollGesture", scrolldemo);
+
+        // alternative 3
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("window.scrollBy(300,200)");
+
+
 
     }
 }

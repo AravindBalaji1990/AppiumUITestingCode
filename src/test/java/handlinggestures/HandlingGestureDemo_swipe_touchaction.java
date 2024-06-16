@@ -1,11 +1,13 @@
 package handlinggestures;
 
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.remote.AutomationName;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
@@ -16,10 +18,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.Collections;
 
-public class HandlingGestureDemo_swipe {
+public class HandlingGestureDemo_swipe_touchaction {
 
     public static void main(String[] args) throws MalformedURLException {
         UiAutomator2Options options = new UiAutomator2Options();
@@ -43,22 +44,24 @@ public class HandlingGestureDemo_swipe {
         WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Views\"]\n"));
         new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(element));
         element.click();
-        //Scroll/swipe action
-        Dimension dim = driver.manage().window().getSize();
-        int start1 = dim.getWidth()/2;
-        int start2 = dim.getHeight()/2;
+        //Scroll/swipe action - touch action
 
-        int end1 = (int) ((int) dim.getHeight() * 0.25);
-        int end2 = start1;
+        int width = driver.manage().window().getSize().width;
+        int height = driver.manage().window().getSize().height;
 
-        PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "touch1");
-        Sequence seq = new Sequence(finger1,1)
-                .addAction(finger1.createPointerMove(Duration.ZERO,PointerInput.Origin.viewport(),start1,start2))
-                .addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(finger1,Duration.ofMillis(500)))
-                .addAction(finger1.createPointerMove(Duration.ofMillis(100),PointerInput.Origin.viewport(), end2, end1))
-                .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(Collections.singletonList(seq));
+        //define start and end point of scrolling
+        int startx= width/2;
+        int starty= (int) (height*0.8);
+
+        int endx= width/2;
+        int endy= (int) (height*0.2);
+
+
+        //perfomr the swiping - deprecated
+        new TouchAction<>(driver).press(PointOption.point(startx, starty)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
+                        .moveTo(PointOption.point(endx,endy)).release().perform();
+
+
         System.out.println("-----Swipe Ended-----");
     }
 }

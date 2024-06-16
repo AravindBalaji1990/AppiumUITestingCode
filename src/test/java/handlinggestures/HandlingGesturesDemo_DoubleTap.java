@@ -25,8 +25,8 @@ public class HandlingGesturesDemo_DoubleTap {
         options.setDeviceName("emulator-5554");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
-        options.setAppPackage("com.saucelabs.mydemoapp.rn");
-        options.setAppActivity("com.saucelabs.mydemoapp.rn.MainActivity");
+        options.setAppPackage("io.appium.android.apis");
+        options.setAppActivity("io.appium.android.apis.ApiDemos");
         options.setAppWaitForLaunch(true);
         options.setAppWaitDuration(Duration.ofMillis(50000));
 //        options.setAppPackage("io.appium.android.apis");
@@ -38,12 +38,14 @@ public class HandlingGesturesDemo_DoubleTap {
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
 
 //        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView"));
-        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup/child::android.widget.TextView[@content-desc='store item text']/preceding-sibling::android.widget.ImageView"));
+        WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"));
 
         //Perform a double tap action
         Point location = element.getLocation();
         Dimension size = element.getSize();
         Point centerofelement = getCenterElement(location, size);
+
+
         PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
         Sequence seq = new Sequence(touchaction1, 1)
                 .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelement))
