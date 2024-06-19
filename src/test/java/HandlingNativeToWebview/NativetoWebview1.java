@@ -24,8 +24,12 @@ public class NativetoWebview1 {
     public  static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("emulator-5554");
+        options.setDeviceName("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
+//        options.autoWebview();
+//        options.autoGrantPermissions();
+//        options.setAutoWebview(true);
+//        options.setAutoWebviewTimeout(Duration.ofMillis(5000));
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android-MyDemoAppRN.1.3.0.build-244.apk");
 
@@ -41,30 +45,25 @@ public class NativetoWebview1 {
         driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Views\"]")).click();
 //        System.out.println("where i am " +driver.getContext());
 //        System.out.println("where i am " +driver.getContextHandles());
-        driver.getContext();
+//        driver.getContext();
         driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"WebView\").instance(0))")).click();
 
 
         //check the current context
-//        driver.getContext();
+        driver.getContext();
         //check for any other webview available
-//        driver.getContextHandles();
+        driver.getContextHandles();
 //        Thread.sleep(5000);
-//        Set<String> handles = driver.getContextHandles();
+        Set<String> handles = driver.getContextHandles();
 
-//        String webpage = new ArrayList<String>(handles).get(1);
+        String webpage = new ArrayList<String>(handles).get(1);
 //        Thread.sleep(5000);
-//        driver.context(webpage);
+        driver.context(webpage);
 
 //        Thread.sleep(5000);
         System.out.println(driver.getPageSource());
 
         //Webview to native
         driver.context("NATIVE_APP");
-    }
-
-    public static Point getCenterElement(Point location, Dimension dim) {
-        return new Point(location.getX() + dim.getWidth() / 2, location.getY() + dim.getHeight() / 2);
-
     }
 }

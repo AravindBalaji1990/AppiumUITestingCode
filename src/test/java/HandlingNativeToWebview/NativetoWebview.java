@@ -25,14 +25,20 @@ public class NativetoWebview {
     public  static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("emulator-5554");
+        options.setDeviceName("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
+        options.autoWebview();
+        options.autoGrantPermissions();
+        options.setAutoWebview(true);
+        options.setAutoWebviewTimeout(Duration.ofMillis(5000));
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android-MyDemoAppRN.1.3.0.build-244.apk");
 
 //        options.setAppWaitDuration(Duration.ofMillis(50000));
-        options.setAppPackage("com.saucelabs.mydemoapp.rn");
-        options.setAppActivity("com.saucelabs.mydemoapp.rn.MainActivity");
+//        options.setAppPackage("com.saucelabs.mydemoapp.rn");
+        options.setAppPackage("io.appium.android.apis");
+//        options.setAppActivity("com.saucelabs.mydemoapp.rn.MainActivity");
+        options.setAppActivity("io.appium.android.apis.ApiDemos");
         options.setAppWaitForLaunch(true);
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
 
