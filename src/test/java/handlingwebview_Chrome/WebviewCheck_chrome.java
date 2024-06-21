@@ -18,7 +18,7 @@ public class WebviewCheck_chrome {
         options.setPlatformName("Android");
         options.setDeviceName("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-        options.withBrowserName("Chrome");
+        // options.withBrowserName("Chrome");
 //        options.setChromedriverExecutable("/Users/aravindbalaji/Documents/Appium/chromedriver-mac-x64/chromedriver");
         AppiumDriver driver = new AndroidDriver(new URL("http://192.168.1.11:4723/"),options);
         //code for chrome
