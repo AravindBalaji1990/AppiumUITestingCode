@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.remote.AutomationName;
+import org.openqa.selenium.By;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -33,7 +34,6 @@ public class WifiBluetoothOption_alternative1 {
        driver.executeScript("mobile: shell",ImmutableMap.of("command", "svc","args", Arrays.asList("wifi","enable")));
        driver.executeScript("mobile: shell",ImmutableMap.of("command", "service","args", Arrays.asList("call","bluetooth_manager","enable")));
 
-        
 
 
 

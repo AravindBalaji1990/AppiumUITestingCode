@@ -24,6 +24,9 @@ public class HandlingGesturesDemo_DoubleTap {
         options.setPlatformName("Android");
         options.setDeviceName("emulator-5554");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
+        options.setCapability("PlatformVersion", "12");
+
+        options.setPlatformVersion("12");
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
         options.setAppPackage("io.appium.android.apis");
         options.setAppActivity("io.appium.android.apis.ApiDemos");
