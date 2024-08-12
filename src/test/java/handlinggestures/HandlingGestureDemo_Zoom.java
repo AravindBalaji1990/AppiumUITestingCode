@@ -35,6 +35,8 @@ public class HandlingGestureDemo_Zoom {
         options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/iOS-Simulator-MyRNDemoApp.1.3.0-162.zip");
 //        options.setAutoWebview(true);
         options.setForceAppLaunch(true);
+//        options.setPermissions();
+
 
 //        options.setBundleId("com.moataz.dailycheck");
 //        options.setBundleId("com.saucelabs.mydemoapp.rn");

@@ -34,6 +34,8 @@ public class HandlingGestureDemo_swipe_touchaction {
         options.setAppWaitDuration(Duration.ofMillis(50000));
         options.setAppPackage("io.appium.android.apis");
         options.setAppActivity("io.appium.android.apis.ApiDemos");
+        options.autoGrantPermissions();
+        options.setAutoGrantPermissions(true);
 
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
 

@@ -28,6 +28,8 @@ public class HandlingGesturesDemo_SingleTap {
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
 //        options.setAppPackage("com.saucelabs.mydemoapp.rn");
         options.setAppPackage("io.appium.android.apis");
+        options.autoGrantPermissions();
+        options.setIgnoreHiddenApiPolicyError(true);
 //        options.setAppActivity("com.saucelabs.mydemoapp.rn.MainActivity");
         options.setAppActivity("io.appium.android.apis.ApiDemos");
         options.setAppWaitForLaunch(true);

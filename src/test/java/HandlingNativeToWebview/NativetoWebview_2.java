@@ -28,6 +28,7 @@ public class NativetoWebview_2 {
 //        options.withBrowserName("Chrome");
         options.setAppPackage("io.appium.android.apis");
         options.setAppActivity("io.appium.android.apis.ApiDemos");
+        options.setIgnoreHiddenApiPolicyError(true);
         options.setAppWaitForLaunch(true);
 //        options.setAutoWebview(true);
 //        options.setAutoWebviewTimeout(Duration.ofMillis(5000));

@@ -44,8 +44,8 @@ public class HandlingGestureDemo_swipe_alternative {
         element.click();
 
         // alternative1
-//        driver.findElement(new AppiumBy.ByAndroidUIAutomator
-//                ("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"WebView\").instance(0))")).click();
+        driver.findElement(new AppiumBy.ByAndroidUIAutomator
+                ("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"WebView\").instance(0))")).click();
 
 
         // alternative2
