@@ -14,7 +14,7 @@ import java.time.Duration;
 public class IosTest {
     public static void main(String[] args) throws MalformedURLException {
         XCUITestOptions options = new XCUITestOptions();
-//        options.setDeviceName("iPhone 15");
+        options.setDeviceName("iPhone 15");
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/ios-app.zip");
 //        options.setAutoWebview(true);
 //        options.setAppPushTimeout(Duration.ofMillis(50000));

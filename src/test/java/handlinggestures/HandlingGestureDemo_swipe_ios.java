@@ -27,6 +27,8 @@ public class HandlingGestureDemo_swipe_ios {
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/ios-app.zip");
 //        options.setAutoWebview(true);
         options.setForceAppLaunch(true);
+        options.setPlatformVersion("17.5");
+        options.setPlatformName(AutomationName.IOS_XCUI_TEST);
 
 //        options.setBundleId("com.moataz.dailycheck");
         options.setBundleId("com.saucelabs.mydemoapp.rn");
