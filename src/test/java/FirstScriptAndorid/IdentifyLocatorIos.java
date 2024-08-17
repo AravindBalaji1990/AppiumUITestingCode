@@ -29,6 +29,10 @@ public class IdentifyLocatorIos {
         Thread.sleep(5000);
 //        driver.findElement(AppiumBy.accessibilityId("Edit")).click();
 
+        //acessibility label validation - specific for ios
+        // this will check for the specific label is availabel for accessibility laebl - useful for accessibility testing
+        System.out.println(driver.findElement(AppiumBy.accessibilityId("Edit")).getAttribute("label"));
+
 
 //        Thread.sleep(5000);
 //        System.out.println("the minus is visible : " + driver.findElement(AppiumBy.xpath(("//XCUIElementTypeImage[@name='minus.circle.fill'])[1]"))).isDisplayed());
