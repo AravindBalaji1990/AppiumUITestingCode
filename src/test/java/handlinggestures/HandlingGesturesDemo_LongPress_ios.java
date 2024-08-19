@@ -26,13 +26,18 @@ public class HandlingGesturesDemo_LongPress_ios {
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/ios-app.zip");
 //        options.setAutoWebview(true);
 //        options.setAppPushTimeout(Duration.ofMillis(50000));
+        options.setUseNewWDA(false);
+
 
         options.setBundleId("com.moataz.dailycheck");
 
         IOSDriver driver = new IOSDriver(new URL("http://127.0.0.1:4723"), options);
 
+        WebElement elementcircle = driver.findElement(AppiumBy.xpath("//XCUIElementTypeButton[@name=\"plus.circle\"]"));
+        Actions act = new Actions(driver);
+        act.doubleClick(elementcircle).build().perform();
 
-        WebElement element =   driver.findElement(AppiumBy.xpath("//XCUIElementTypeButton[@name=\"calendar\"]\n"));
+        WebElement element =   driver.findElement(AppiumBy.xpath("//XCUIElementTypeTextField[@value=\"Title\"]"));
         //long press gesture handling
         Point location = element.getLocation();
         Dimension size = element.getSize();

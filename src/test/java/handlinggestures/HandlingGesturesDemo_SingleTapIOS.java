@@ -9,6 +9,7 @@ import io.appium.java_client.remote.AutomationName;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
@@ -25,6 +26,8 @@ public class HandlingGesturesDemo_SingleTapIOS {
         options.setDeviceName("iPhone 15");
         options.setForceAppLaunch(true);
         options.setPlatformVersion("17.5");
+        options.setUdid("62622A19-BE5E-45CE-AF31-EDE73B855E60");
+        options.setUseNewWDA(false);
         options.setPlatformName(AutomationName.IOS_XCUI_TEST);
 
         options.setBundleId("com.moataz.dailycheck");
@@ -54,7 +57,11 @@ public class HandlingGesturesDemo_SingleTapIOS {
         //we are trying to identify the element position
         // to do a tap
         WebElement element = driver.findElement(AppiumBy.xpath("//XCUIElementTypeButton[@name=\"plus.circle\"]"));
+        // normal selenium click this shoukld also work
+//        element.click();
 
+//        Actions action = new Actions(driver);
+//        action.click(element).build().perform();
         //locaiton of the lementi n the app to perform touch action
         Point location = element.getLocation();
         System.out.println("the location the element "+ location);
