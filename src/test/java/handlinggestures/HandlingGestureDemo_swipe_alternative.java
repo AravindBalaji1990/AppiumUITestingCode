@@ -21,7 +21,7 @@ import java.util.HashMap;
 
 public class HandlingGestureDemo_swipe_alternative {
 
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
         options.setDeviceName("29221JEGR00379");
@@ -45,7 +45,7 @@ public class HandlingGestureDemo_swipe_alternative {
 
         // alternative1
         driver.findElement(new AppiumBy.ByAndroidUIAutomator
-                ("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"WebView\").instance(0))")).click();
+                ("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"TextFields\").instance(0))"));
 
 
         // alternative2
@@ -59,6 +59,9 @@ public class HandlingGestureDemo_swipe_alternative {
         // alternative 3
 //        JavascriptExecutor js = (JavascriptExecutor) driver;
 //        js.executeScript("window.scrollBy(300,200)");
+
+        Thread.sleep(3000);
+        driver.quit();
 
 
 
