@@ -87,20 +87,20 @@ public class HandlingGestureDemo_swipe_ToTop {
     //todo for swipe up why does it not happen
     public static void swipeUp(AndroidDriver driver){
         Dimension dim = driver.manage().window().getSize();
-        int start1 = dim.getWidth()/2;
-        int start2 = dim.getHeight()/2;
+        int start1 = dim.getWidth() / 2;
+        int start2 = (int) (dim.getHeight() * 0.25);  // Start higher up at 25% of the screen height
 
-        int end1 = (int) ((int) dim.getHeight() * 0.25);
+        int end1 = dim.getHeight() / 2;  // End at the center of the screen
         int end2 = start1;
 
         PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "touch1");
-        Sequence seq = new Sequence(finger1,1)
-                .addAction(finger1.createPointerMove(Duration.ZERO,PointerInput.Origin.viewport(),end2,end1))
+        Sequence seq = new Sequence(finger1, 1)
+                .addAction(finger1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), start1, start2))  // Start at higher position
                 .addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(finger1,Duration.ofMillis(500)))
-                .addAction(finger1.createPointerMove(Duration.ofMillis(100),PointerInput.Origin.viewport(), start2, start1))
+                .addAction(new Pause(finger1, Duration.ofMillis(500)))
+                .addAction(finger1.createPointerMove(Duration.ofMillis(100), PointerInput.Origin.viewport(), end2, end1))  // Move downward
                 .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
         driver.perform(Collections.singletonList(seq));
-        System.out.println("-----Swipe Ended-----");
+
     }
 }

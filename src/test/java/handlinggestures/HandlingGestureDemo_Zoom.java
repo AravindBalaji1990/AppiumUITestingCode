@@ -24,7 +24,7 @@ public class HandlingGestureDemo_Zoom {
 
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
 
-        AppiumDriverLocalService service =AppiumDriverLocalService.buildDefaultService();
+        AppiumDriverLocalService service = AppiumDriverLocalService.buildDefaultService();
         service.start();
         System.out.println(service.isRunning());
 
@@ -53,14 +53,14 @@ public class HandlingGestureDemo_Zoom {
 
         WebElement element3 = driver.findElement(AppiumBy.xpath("//XCUIElementTypeOther[@name='Signature Pad demo']"));
 
-        Point centerofelememnt = getCenterElement(element3.getLocation(),element3.getSize());
+        Point centerofelememnt = getCenterElement(element3.getLocation(), element3.getSize());
 
         PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "touch1");
         Sequence seq1 = new Sequence(finger1, 1)
                 .addAction(finger1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelememnt))
                 .addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
                 .addAction(new Pause(finger1, Duration.ofMillis(200)))
-                .addAction(finger1.createPointerMove(Duration.ofMillis(200), PointerInput.Origin.viewport(),centerofelememnt.getX()+1000, centerofelememnt.getY()-1000))
+                .addAction(finger1.createPointerMove(Duration.ofMillis(200), PointerInput.Origin.viewport(), centerofelememnt.getX() + 1000, centerofelememnt.getY() - 1000))
                 .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         PointerInput finger2 = new PointerInput(PointerInput.Kind.TOUCH, "touch2");
@@ -68,14 +68,57 @@ public class HandlingGestureDemo_Zoom {
                 .addAction(finger2.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelememnt))
                 .addAction(finger2.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
                 .addAction(new Pause(finger1, Duration.ofMillis(200)))
-                .addAction(finger2.createPointerMove(Duration.ofMillis(200), PointerInput.Origin.viewport(),centerofelememnt.getX()-1000, centerofelememnt.getY()+1000))
+                .addAction(finger2.createPointerMove(Duration.ofMillis(200), PointerInput.Origin.viewport(), centerofelememnt.getX() - 1000, centerofelememnt.getY() + 1000))
                 .addAction(finger2.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
-        driver.perform(Arrays.asList(seq1,seq2));
+        driver.perform(Arrays.asList(seq1, seq2));
     }
 
     public static Point getCenterElement(Point location, Dimension dim) {
         return new Point(location.getX() + dim.getWidth() / 2, location.getY() + dim.getHeight() / 2);
+
+    }
+
+
+    public static void zoomFunction(AndroidDriver driver) {
+        Dimension dim = driver.manage().window().getSize();
+        int centerX = dim.getWidth() / 2;
+        int centerY = dim.getHeight() / 2;
+
+// Finger 1 starts near the center
+        int startX1 = centerX;
+        int startY1 = centerY;
+
+// Finger 2 starts near the center
+        int startX2 = centerX;
+        int startY2 = centerY;
+
+// Finger 1 moves outward towards the top-left
+        int endX1 = (int) (centerX * 0.5);
+        int endY1 = (int) (centerY * 0.5);
+
+// Finger 2 moves outward towards the bottom-right
+        int endX2 = (int) (centerX * 1.5);
+        int endY2 = (int) (centerY * 1.5);
+
+        PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "finger1");
+        PointerInput finger2 = new PointerInput(PointerInput.Kind.TOUCH, "finger2");
+
+        Sequence zoomInFinger1 = new Sequence(finger1, 1)
+                .addAction(finger1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX1, startY1))
+                .addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(new Pause(finger1, Duration.ofMillis(100)))
+                .addAction(finger1.createPointerMove(Duration.ofMillis(200), PointerInput.Origin.viewport(), endX1, endY1))
+                .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        Sequence zoomInFinger2 = new Sequence(finger2, 1)
+                .addAction(finger2.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX2, startY2))
+                .addAction(finger2.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(new Pause(finger2, Duration.ofMillis(100)))
+                .addAction(finger2.createPointerMove(Duration.ofMillis(200), PointerInput.Origin.viewport(), endX2, endY2))
+                .addAction(finger2.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        driver.perform(Arrays.asList(zoomInFinger1, zoomInFinger2));
 
     }
 }
