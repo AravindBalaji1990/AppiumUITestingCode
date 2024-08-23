@@ -21,7 +21,7 @@ import java.util.Collections;
 
 public class HandlingGestures_swipe_leftright {
 
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main(String[] args) throws MalformedURLException, InterruptedException {
 
 
         UiAutomator2Options options = new UiAutomator2Options();
@@ -48,15 +48,17 @@ public class HandlingGestures_swipe_leftright {
 //        WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Views\"]\n"));
 //        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(element));
 //        element.click();
+        Thread.sleep(5000);
         //Scroll/swipe action
-        WebElement ele = driver.findElement(AppiumBy.xpath("//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ImageView\n"));
+        WebElement ele = driver.findElement(AppiumBy.xpath("//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ImageView"));
 
-        Dimension size = driver.manage().window().getSize();
-      int   startX = ele.getRect().x + (ele.getSize().width * 3 / 4);
-       int startY = ele.getRect().y + (ele.getSize().height / 2);
-        int endX = ele.getRect().x + (ele.getSize().width / 4);
-        int endY = ele.getRect().y + (ele.getSize().height / 2);
+        swipeLeft(driver, ele);
+        Thread.sleep(5000);
+        WebElement ele2 = driver.findElement(AppiumBy.xpath("//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.widget.ImageView"));
+        swipeRight(driver, ele2);
 
+        Thread.sleep(5000);
+        driver.quit();
 //        Point midpoint = new Point((int)(size.width*0.5), (int)(size.height*0.5));
 //
 //        int left = midpoint.x - (int)(midpoint.x *0.75);
@@ -73,6 +75,34 @@ public class HandlingGestures_swipe_leftright {
 //        int endy = starty;
 
 
+
+    }
+
+
+    public static void swipeLeft(AndroidDriver driver , WebElement ele){
+        Dimension size = driver.manage().window().getSize();
+        int startX = ele.getRect().x + (ele.getSize().width * 3 / 4);
+        int startY = ele.getRect().y + (ele.getSize().height / 2);
+        int endX = ele.getRect().x + (ele.getSize().width / 4);
+        int endY = ele.getRect().y + (ele.getSize().height / 2);
+        PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "touch1");
+        Sequence seq = new Sequence(finger1, 1)
+                .addAction(finger1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY))
+                .addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(new Pause(finger1, Duration.ofMillis(500)))
+                .addAction(finger1.createPointerMove(Duration.ofMillis(100), PointerInput.Origin.viewport(), endX, endY))
+                .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        driver.perform(Arrays.asList(seq));
+        System.out.println("-----Swipe Ended-----");
+    }
+
+
+    public static void swipeRight(AndroidDriver driver , WebElement ele){
+        Dimension size = driver.manage().window().getSize();
+        int startX = ele.getRect().x + (ele.getSize().width / 4);
+        int startY = ele.getRect().y + (ele.getSize().height / 2);
+        int endX = ele.getRect().x + (ele.getSize().width * 3 / 4);
+        int endY = ele.getRect().y + (ele.getSize().height / 2);
         PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "touch1");
         Sequence seq = new Sequence(finger1, 1)
                 .addAction(finger1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY))

@@ -42,8 +42,8 @@ public class HandlingGesturesDemo_SingleTap {
 
         Thread.sleep(5000);
 //        WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"));
-        WebElement element = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Views\"))"));
-        element.click();
+//        WebElement element = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Views\"))"));
+//        element.click();
 //        driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView")).click();
 //        System.out.println("to chec kthe attribute vbalue :" +driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']")).getAttribute("content-desc"));
 //        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView"));
@@ -63,29 +63,29 @@ public class HandlingGesturesDemo_SingleTap {
 
         //we are trying to identify the element position
         // to do a tap
-//        WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"));
+        WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"));
 //
 //        //locaiton of the lementi n the app to perform touch action
-//        Point location = element.getLocation();
+        Point location = element.getLocation();
 //        System.out.println("the location the element "+ location);
-//        Dimension size = element.getSize();
-//        System.out.println("the size the element "+ size);
-//        Point centerofelement = getCenterElement(location, size);
-//
+        Dimension size = element.getSize();
+        System.out.println("the size the element "+ size);
+        Point centerofelement = getCenterElement(location, size);
+
 //        // we need to perform a touch action
-//        PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
-//        Sequence seq = new Sequence(touchaction1, 1)
-//                //this simulates the tap
-//                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),centerofelement))
-//                // this simulates the tap onthe element
-//                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-//                // this simulates the tap duration
-//                .addAction(new Pause(touchaction1,Duration.ofMillis(500)))
-//                // this simulates the relase of tap/finger on the element
-//                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-//
-//        // this will perfomr the series of actions
-//        driver.perform(Collections.singletonList(seq));
+        PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
+        Sequence seq = new Sequence(touchaction1, 1)
+                //this simulates the tap
+                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),centerofelement))
+                // this simulates the tap onthe element
+                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                // this simulates the tap duration
+                .addAction(new Pause(touchaction1,Duration.ofMillis(500)))
+                // this simulates the relase of tap/finger on the element
+                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        // this will perfomr the series of actions
+        driver.perform(Collections.singletonList(seq));
 
 
         Thread.sleep(5000);

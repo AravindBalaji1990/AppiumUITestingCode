@@ -84,7 +84,7 @@ public class HandlingGestureDemo_swipe_ToTop {
         System.out.println("-----Swipe Ended-----");
     }
 
-    //todo for swipe up why does it not happen
+
     public static void swipeUp(AndroidDriver driver){
         Dimension dim = driver.manage().window().getSize();
         int start1 = dim.getWidth() / 2;

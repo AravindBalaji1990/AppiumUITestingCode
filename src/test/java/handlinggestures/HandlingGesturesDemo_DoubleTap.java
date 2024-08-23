@@ -19,14 +19,14 @@ import java.util.Collections;
 
 public class HandlingGesturesDemo_DoubleTap {
 
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("emulator-5554");
+        options.setDeviceName("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.setCapability("PlatformVersion", "12");
 
-        options.setPlatformVersion("12");
+//        options.setPlatformVersion("12");
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
         options.setAppPackage("io.appium.android.apis");
         options.setAppActivity("io.appium.android.apis.ApiDemos");
@@ -43,12 +43,29 @@ public class HandlingGesturesDemo_DoubleTap {
 //        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView"));
         WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"));
 
+        // gesture way of handling double tap
+//        doubleTap(driver, element);
+
+        //alternative for double tap
+        Actions act = new Actions(driver);
+//        act.doubleClick(element).pause(Duration.ofSeconds(5)).perform();
+        act.click(element).click(element).build().perform();
+
+
+        Thread.sleep(5000);
+        driver.quit();
+    }
+
+    public static Point getCenterElement(Point location, Dimension dim) {
+        return new Point(location.getX() + dim.getWidth() / 2, location.getY() + dim.getHeight() / 2);
+
+    }
+
+    public static void doubleTap(AndroidDriver driver, WebElement element){
         //Perform a double tap action
         Point location = element.getLocation();
         Dimension size = element.getSize();
         Point centerofelement = getCenterElement(location, size);
-
-
         PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
         Sequence seq = new Sequence(touchaction1, 1)
                 .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelement))
@@ -58,14 +75,6 @@ public class HandlingGesturesDemo_DoubleTap {
                 .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
                 .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
         driver.perform(Collections.singletonList(seq));
-
-        //alternative
-//        Actions act = new Actions(driver);
-//        act.doubleClick().build().perform();
-    }
-
-    public static Point getCenterElement(Point location, Dimension dim) {
-        return new Point(location.getX() + dim.getWidth() / 2, location.getY() + dim.getHeight() / 2);
-
+        System.out.println("-----Execution complete-------");
     }
 }
