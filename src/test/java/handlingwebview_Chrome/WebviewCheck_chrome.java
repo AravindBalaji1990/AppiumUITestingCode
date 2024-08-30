@@ -18,12 +18,12 @@ public class WebviewCheck_chrome {
         options.setPlatformName("Android");
         options.setDeviceName("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-        // options.withBrowserName("Chrome");
-//        options.setChromedriverExecutable("/Users/aravindbalaji/Documents/Appium/chromedriver-mac-x64/chromedriver");
-        AppiumDriver driver = new AndroidDriver(new URL("http://192.168.1.11:4723/"),options);
+        options.withBrowserName("Chrome");
+        options.setChromedriverExecutable(System.getProperty("user.dir")+"/src/test/resources/browser/chromedriver_mac");
+        AppiumDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"),options);
         //code for chrome
         driver.get("https://bing.com");
-        Thread.sleep(8000);
+        Thread.sleep(5000);
         System.out.println(driver.getPageSource());
         driver.findElement(By.xpath("//textarea[@id='sb_form_q']")).sendKeys("test");
 
