@@ -44,5 +44,6 @@ public class AndroidIOSCapabilityChecks {
         options.enablePerformanceLogging(); // help to collect the cpu usage details
         options.setUseNewWDA(true); // webdriver agent where we can uninstall/re-install the webdriver agent
         options.setShowXcodeLog(true);//xcode based logs on the appium server
+
     }
 }
