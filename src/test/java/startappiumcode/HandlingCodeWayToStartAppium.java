@@ -24,9 +24,10 @@ public class HandlingCodeWayToStartAppium {
     public static void main(String[] args) throws MalformedURLException {
 
         // using code level to start appium
+        // where the appium main.js the ip address and the port number incwhich it runs
         AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder();
         serviceBuilder.withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"))
-                .withIPAddress("127.0.0.1").usingPort(4723).withTimeout(Duration.ofSeconds(200))
+                .withIPAddress("127.0.0.1").usingPort(4727).withTimeout(Duration.ofSeconds(120))
                 .build().start();
 
 
@@ -45,28 +46,39 @@ public class HandlingCodeWayToStartAppium {
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
 
         // calling the andorid driver to run the app̵
-        AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
+
+        try {
+            AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4727"), options);
 
 //        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView"));
-        WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Views\"]\n"));
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
-        //Scroll/swipe action
-        Dimension dim = driver.manage().window().getSize();
-        int start1 = dim.getWidth()/2;
-        int start2 = dim.getHeight()/2;
+            WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Views\"]\n"));
+            new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(element));
+            element.click();
+            //Scroll/swipe action
+            Dimension dim = driver.manage().window().getSize();
+            int start1 = dim.getWidth() / 2;
+            int start2 = dim.getHeight() / 2;
 
-        int end1 = (int) ((int) dim.getHeight() * 0.25);
-        int end2 = start1;
+            int end1 = (int) ((int) dim.getHeight() * 0.25);
+            int end2 = start1;
 
-        PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "touch1");
-        Sequence seq = new Sequence(finger1,1)
-                .addAction(finger1.createPointerMove(Duration.ZERO,PointerInput.Origin.viewport(),start1,start2))
-                .addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(finger1,Duration.ofMillis(500)))
-                .addAction(finger1.createPointerMove(Duration.ofMillis(100),PointerInput.Origin.viewport(), end2, end1))
-                .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(Collections.singletonList(seq));
-        System.out.println("-----Swipe Ended-----");
+            PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "touch1");
+            Sequence seq = new Sequence(finger1, 1)
+                    .addAction(finger1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), start1, start2))
+                    .addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                    .addAction(new Pause(finger1, Duration.ofMillis(500)))
+                    .addAction(finger1.createPointerMove(Duration.ofMillis(100), PointerInput.Origin.viewport(), end2, end1))
+                    .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+            driver.perform(Collections.singletonList(seq));
+            System.out.println("-----Swipe Ended-----");
+        }catch (Exception e){
+
+        }finally {
+            System.out.println("inside  finally block");
+            System.out.println(serviceBuilder.build().isRunning());
+            serviceBuilder.build().stop();
+        }
+
+
     }
 }
