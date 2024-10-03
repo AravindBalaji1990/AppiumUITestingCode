@@ -13,11 +13,11 @@ public class AndroidTest {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("H0C9FI1LV01B0300012");
+        options.setDeviceName("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
-        options.setAppPackage("com.aimia.android.me");
-        options.setAppActivity("com.airmiles.app.ui.splash.SplashActivity");
+        options.setAppPackage("io.appium.android.apis");
+        options.setAppActivity("io.appium.android.apis.ApiDemos");
         options.setAppWaitForLaunch(true);
         options.setAppWaitDuration(Duration.ofSeconds(60));
 

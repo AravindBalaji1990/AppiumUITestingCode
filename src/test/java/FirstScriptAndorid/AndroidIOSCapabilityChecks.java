@@ -17,6 +17,7 @@ public class AndroidIOSCapabilityChecks {
         options.setPlatformName("Android");
         options.setDeviceName("emulator-5554");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
+        options.setApp("");
         options.setAppPackage("io.appium.android.apis");
         options.setAppActivity("io.appium.android.apis.ApiDemos");
         options.setAppWaitForLaunch(true);
