@@ -8,11 +8,10 @@ import io.appium.java_client.remote.AutomationName;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
-public class LocatorCheckIos {
+public class LocatorCheckIos2 {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         XCUITestOptions options = new XCUITestOptions();
@@ -30,19 +29,14 @@ public class LocatorCheckIos {
         Thread.sleep(5000);
         System.out.println(driver.findElement(AppiumBy.xpath("//XCUIElementTypeStaticText[@name ='Create new task' and @value='Create new task']")).isDisplayed());
 
-        // IOSNSPredicatestring
-        System.out.println(driver.findElement(AppiumBy.iOSNsPredicateString("name == 'Create new task'")).isDisplayed());
-        System.out.println(driver.findElement(AppiumBy.iOSNsPredicateString("label == 'Create new task'")).isDisplayed());
-        System.out.println(driver.findElement(AppiumBy.iOSNsPredicateString("name == 'Create new task' AND label == 'Create new task'")).isDisplayed());
-        System.out.println(driver.findElement(AppiumBy.iOSNsPredicateString("name == 'Create new task' OR label == 'Create new task'")).isDisplayed());
+        // IOSClassChain
 
+        System.out.println(driver.findElement(AppiumBy.iOSClassChain("**/XCUIElementTypeStaticText[`name == 'Create new task'`]")).isDisplayed());
+        System.out.println(driver.findElement(AppiumBy.iOSClassChain("**/XCUIElementTypeCell/XCUIElementTypeStaticText[`name == 'Create new task'`]")).isDisplayed());
+        System.out.println(driver.findElement(AppiumBy.iOSClassChain("**/XCUIElementTypeStaticText[`name == 'Create new task' AND visible== 1`]")).isDisplayed());
 
-        //we can use != but hte use case currently not available in the page structure
-        System.out.println(driver.findElement(AppiumBy.iOSNsPredicateString("name != 'Create new task'")).isDisplayed());
-        System.out.println(driver.findElement(AppiumBy.iOSNsPredicateString("name CONTAINS 'Create new task'")).isDisplayed()); // case sensitive
-        System.out.println(driver.findElement(AppiumBy.iOSNsPredicateString("name CONTAINS[c] 'Create new task'")).isDisplayed()); // case in-sensitive
-        System.out.println(driver.findElement(AppiumBy.iOSNsPredicateString("name BEGINSWITH 'Create new task'")).isDisplayed());
-        System.out.println(driver.findElement(AppiumBy.iOSNsPredicateString("name ENDSWITH ' new task'")).isDisplayed());
+        System.out.println(driver.findElement(AppiumBy.iOSClassChain("**XCUIElementTypeTable/**/XCUIElementTypeStaticText[`name == 'Create new task'`]")).isDisplayed());
+
 
 
         File fs = new File("/Users/aravindbalaji/IdeaProjects/AppiumDemo/src/test/resources/pagesource/ios_pagesource.txt");
