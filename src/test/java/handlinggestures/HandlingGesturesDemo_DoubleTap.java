@@ -24,18 +24,12 @@ public class HandlingGesturesDemo_DoubleTap {
         options.setPlatformName("Android");
         options.setDeviceName("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-        options.setCapability("PlatformVersion", "12");
-
-//        options.setPlatformVersion("12");
-//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
+//        options.setCapability("PlatformVersion", "12");
         options.setAppPackage("io.appium.android.apis");
         options.setAppActivity("io.appium.android.apis.ApiDemos");
         options.setAppWaitForLaunch(true);
         options.setAppWaitDuration(Duration.ofMillis(50000));
-//        options.setAppPackage("io.appium.android.apis");
-//        options.setAppActivity("io.appium.android.apis.ApiDemos");
 
-//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
 
         // calling the andorid driver to run the app
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
@@ -44,12 +38,12 @@ public class HandlingGesturesDemo_DoubleTap {
         WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"));
 
         // gesture way of handling double tap
-//        doubleTap(driver, element);
+        doubleTap(driver, element);
 
         //alternative for double tap
-        Actions act = new Actions(driver);
-//        act.doubleClick(element).pause(Duration.ofSeconds(5)).perform();
-        act.click(element).click(element).build().perform();
+//        Actions act = new Actions(driver);
+////        act.doubleClick(element).pause(Duration.ofSeconds(5)).perform();
+//        act.click(element).click(element).build().perform();
 
 
         Thread.sleep(5000);
