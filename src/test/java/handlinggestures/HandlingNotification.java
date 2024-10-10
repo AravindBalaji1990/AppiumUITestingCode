@@ -48,7 +48,8 @@ public class HandlingNotification {
 //        driver.findElement(AppiumBy.accessibilityId("Phone Number")).click();
        WebElement ph =  driver.findElement(AppiumBy.accessibilityId("Phone Number"));
 //        WebElement inputphonenumber =  driver.findElement(AppiumBy.accessibilityId("Phone Number"));
-        
+
+        // Keyboard action simulator to enter the phone number
 
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_8));
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_9));
@@ -73,16 +74,15 @@ public class HandlingNotification {
 
 //        System.out.println("data : " +driver.findElement(AppiumBy.xpath("//android.widget.LinearLayout[@resource-id=\"com.android.systemui:id/keyguard_message_area_container\"]\n")).getText());
         String otpmessage = driver.findElement(AppiumBy.xpath("//*[contains(@text,'OTP')]")).getText();
-        System.out.println(otpmessage);
+        System.out.println("the complete otp message : " + otpmessage);
         Pattern pattern  = Pattern.compile("[0-9]+");
         Matcher matcher = pattern.matcher(otpmessage);
         while(matcher.find()) {
-            System.out.println("data : " +matcher.toString());
+            System.out.println("data from sms: " +matcher.toString());
             if(matcher.group().toString().length() == 6) {
                 String otpextract = matcher.group();
-                System.out.println("data : " +matcher.group());
+                System.out.println("extracted data from sms : " +matcher.group());
             }
-
         }
 
         // to clos e the notificaiotn dn ago back to the app

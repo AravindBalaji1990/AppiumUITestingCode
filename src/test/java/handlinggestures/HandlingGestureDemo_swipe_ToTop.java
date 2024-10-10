@@ -37,7 +37,7 @@ public class HandlingGestureDemo_swipe_ToTop {
 
 //        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView"));
         WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Views\"]\n"));
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(element));
+//        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(element));
         element.click();
         Thread.sleep(5000);
         swipeDown(driver);
@@ -66,14 +66,22 @@ public class HandlingGestureDemo_swipe_ToTop {
     }
 
     public static void swipeDown(AndroidDriver driver){
+        // to get the dimention of the screen
         Dimension dim = driver.manage().window().getSize();
+        System.out.println("the dimenion of the screen : " + dim);
+        // from where till where i need to swipe i am checking it
+        // by getting the x and y dimention of the screen
         int start1 = dim.getWidth()/2;
         int start2 = dim.getHeight()/2;
 
+        // since we are doing a swipe down the end1 will be calculated
         int end1 = (int) ((int) dim.getHeight() * 0.25);
         int end2 = start1;
 
+        // the pointer input usually represents a input
         PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "touch1");
+
+        // sequence represents the sequence of action we are going to do
         Sequence seq = new Sequence(finger1,1)
                 .addAction(finger1.createPointerMove(Duration.ZERO,PointerInput.Origin.viewport(),start1,start2))
                 .addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))

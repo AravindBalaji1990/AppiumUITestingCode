@@ -22,24 +22,17 @@ import java.util.Collections;
 public class HandlingGestures_swipe_leftright {
 
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
-
-
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
         options.setDeviceName("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
+        // capability to allow the location based permission or any default permission
         options.autoGrantPermissions();
-//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
-//        options.setAppPackage("com.saucelabs.mydemoapp.rn");
-//        options.setAppActivity("com.saucelabs.mydemoapp.rn.MainActivity");
         options.setAppWaitForLaunch(true);
         options.setAppWaitDuration(Duration.ofMillis(50000));
-//        options.setAppPackage("io.appium.android.apis");
         options.setAppPackage("co.motovolt.motovoltapp");
-//        options.setAppActivity("io.appium.android.apis.ApiDemos");
         options.setAppActivity("co.motovolt.motovoltapp.MainActivity");
 
-//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
 
         // calling the andorid driver to run the app̵
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
@@ -80,11 +73,11 @@ public class HandlingGestures_swipe_leftright {
 
 
     public static void swipeLeft(AndroidDriver driver , WebElement ele){
-        Dimension size = driver.manage().window().getSize();
         int startX = ele.getRect().x + (ele.getSize().width * 3 / 4);
         int startY = ele.getRect().y + (ele.getSize().height / 2);
         int endX = ele.getRect().x + (ele.getSize().width / 4);
         int endY = ele.getRect().y + (ele.getSize().height / 2);
+
         PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "touch1");
         Sequence seq = new Sequence(finger1, 1)
                 .addAction(finger1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY))
@@ -98,11 +91,11 @@ public class HandlingGestures_swipe_leftright {
 
 
     public static void swipeRight(AndroidDriver driver , WebElement ele){
-        Dimension size = driver.manage().window().getSize();
         int startX = ele.getRect().x + (ele.getSize().width / 4);
         int startY = ele.getRect().y + (ele.getSize().height / 2);
         int endX = ele.getRect().x + (ele.getSize().width * 3 / 4);
         int endY = ele.getRect().y + (ele.getSize().height / 2);
+
         PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "touch1");
         Sequence seq = new Sequence(finger1, 1)
                 .addAction(finger1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY))

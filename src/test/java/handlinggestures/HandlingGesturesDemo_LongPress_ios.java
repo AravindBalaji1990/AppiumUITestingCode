@@ -20,9 +20,10 @@ import java.time.Duration;
 import java.util.Collections;
 
 public class HandlingGesturesDemo_LongPress_ios {
-    public static void main(String[] args) throws MalformedURLException {
+    public static void main(String[] args) throws MalformedURLException, InterruptedException {
         XCUITestOptions options = new XCUITestOptions();
-        options.setDeviceName("iPhone 15");
+        options.setDeviceName("iPhone 16 Plus");
+        options.setUdid("A332C391-A85E-4B1E-8F55-63695EB04AED");
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/ios-app.zip");
 //        options.setAutoWebview(true);
 //        options.setAppPushTimeout(Duration.ofMillis(50000));
@@ -55,6 +56,9 @@ public class HandlingGesturesDemo_LongPress_ios {
         //Alternative way using Actions class
 //        Actions act = new Actions(driver);
 //        act.clickAndHold(element).pause(Duration.ofSeconds(4)).build().perform();
+
+        Thread.sleep(3000);
+        driver.quit();
 
     }
 
