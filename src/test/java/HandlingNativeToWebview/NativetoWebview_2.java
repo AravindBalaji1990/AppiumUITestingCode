@@ -44,6 +44,7 @@ public class NativetoWebview_2 {
 
 
         //switch to the webview content
+        // getContextHandles() - will get botht he native and the webview content
         Set<String> contextname = driver.getContextHandles();
         for (String data : contextname){
             System.out.println("webview content avaiable -> " +data);
