@@ -27,7 +27,7 @@ public class HandlingCodeWayToStartAppium {
         // where the appium main.js the ip address and the port number incwhich it runs
         AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder();
         serviceBuilder.withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"))
-                .withIPAddress("127.0.0.1").usingPort(4727).withTimeout(Duration.ofSeconds(120))
+                .withIPAddress("127.0.0.1").usingPort(4723).withTimeout(Duration.ofSeconds(120))
                 .build().start();
 
 
@@ -46,9 +46,9 @@ public class HandlingCodeWayToStartAppium {
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
 
         // calling the andorid driver to run the app̵
-
+        AndroidDriver driver = null;
         try {
-            AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4727"), options);
+             driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
 
 //        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView"));
             WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Views\"]\n"));
@@ -75,6 +75,7 @@ public class HandlingCodeWayToStartAppium {
 
         }finally {
             System.out.println("inside  finally block");
+            driver.quit();
             System.out.println(serviceBuilder.build().isRunning());
             serviceBuilder.build().stop();
         }

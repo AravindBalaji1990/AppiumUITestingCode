@@ -27,15 +27,16 @@ public class NativetoWebview1 {
     public  static void main(String[] args) throws MalformedURLException, InterruptedException {
         XCUITestOptions options = new XCUITestOptions();
         options.setPlatformName("IOS");
-        options.setDeviceName("iPhone 15");
+        options.setDeviceName("iPhone 16 Plus");
+        options.setUdid("A332C391-A85E-4B1E-8F55-63695EB04AED");
         options.setAutomationName(AutomationName.IOS_XCUI_TEST);
 //        options.autoWebview();
 //        options.autoGrantPermissions();
 //        options.setAutoWebview(true);
 //        options.setAutoWebviewTimeout(Duration.ofMillis(5000));
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
-//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/iOS-Simulator-MyRNDemoApp.1.3.0-162.zip");
-        options.setBundleId("com.saucelabs.mydemoapp.rn");
+        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/iOS-Simulator-MyRNDemoApp.1.3.0-162.zip");
+//        options.setBundleId("com.saucelabs.mydemoapp.rn");
 
 //        options.setAppWaitDuration(Duration.ofMillis(50000));
 //        options.setAppPackage("com.saucelabs.mydemoapp.rn");
@@ -110,6 +111,9 @@ public class NativetoWebview1 {
 //
 //        //Webview to native
 //        driver.context("NATIVE_APP");
+
+        Thread.sleep(5000);
+        driver.quit();
     }
 
     public static  void singleTap(IOSDriver driver, WebElement element){

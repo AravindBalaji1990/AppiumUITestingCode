@@ -45,7 +45,7 @@ public class SwitchBetweenApps {
         Thread.sleep(5000);
         // swtiching back to old app
         driver.activateApp("io.appium.android.apis");
-        System.out.println(driver.getCurrentPackage());
+        System.out.println("the old app back ----> " + driver.getCurrentPackage());
         WebElement element2 = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Animation']"));
         System.out.println("the app is switched : " + element2.isDisplayed());
         element2.click();

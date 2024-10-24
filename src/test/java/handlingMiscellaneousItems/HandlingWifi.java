@@ -31,9 +31,9 @@ public class HandlingWifi {
 
         Thread.sleep(5000);
        ConnectionState con =  driver.getConnection();
-        System.out.println( con.isWiFiEnabled());// to check whter wifi is enabled/disabled
+        System.out.println( "state of wifi : " +con.isWiFiEnabled());// to check whter wifi is enabled/disabled
 
-        System.out.println(con.isAirplaneModeEnabled()); // to check whether the airplane mode is enabled/disabled
+        System.out.println("state of airplanemode : " +con.isAirplaneModeEnabled()); // to check whether the airplane mode is enabled/disabled
         Thread.sleep(5000);
 
 //       if(con.isDataEnabled()){
@@ -42,6 +42,7 @@ public class HandlingWifi {
 //           driver.toggleData();
 //       }
 
+        // this will turn on the mobile data
         driver.toggleData();
         Thread.sleep(5000);
 
