@@ -96,31 +96,42 @@ public class HandlingNotification {
 //            driver.findElement(AppiumBy.xpath("")).sendKeys(String.valueOf(data[i]));
 //        }
 
+        swipeUp(driver);
         // to clos e the notificaiotn dn ago back to the app
         Dimension size = driver.manage().window().getSize();
         int startx = size.width/2;
         int starty = (int) (size.height*0.8);
         int endy = (int) (size.height*0.2);
 
-        PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH,"swipe");
-        Sequence seq = new Sequence(touchaction1, 1)
-                //this simulates the tap
-                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),startx,starty))
-//                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),500,1000))
-                // this simulates the tap onthe element
-                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                // this simulates the tap duration
-                .addAction(new Pause(touchaction1,Duration.ofMillis(500)))
-                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),startx,endy))
 
-                // this simulates the relase of tap/finger on the element
-                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-
-        // this will perfomr the series of actions
-        driver.perform(Arrays.asList(seq));
 
 
         Thread.sleep(5000);
         driver.quit();
+    }
+
+
+    public static void swipeUp(AndroidDriver driver) {
+        // Get screen size
+        int screenHeight = driver.manage().window().getSize().getHeight();
+        int screenWidth = driver.manage().window().getSize().getWidth();
+
+        // Calculate start and end points for swipe
+        int startX = screenWidth / 2;
+        int startY = (int) (screenHeight * 0.8); // Start near the bottom
+        int endY = (int) (screenHeight * 0.2);   // End near the top
+
+        // Define PointerInput for touch interaction
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+
+        // Create a sequence for swipe-up action
+        Sequence swipe = new Sequence(finger, 0);
+        swipe.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, startY)); // Move to start point
+        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg())); // Press down
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(1000), PointerInput.Origin.viewport(), startX, endY)); // Move to end point
+        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg())); // Release
+
+        // Perform the action
+        driver.perform(Arrays.asList(swipe));
     }
 }
