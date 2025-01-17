@@ -24,7 +24,7 @@ public class HandlingGesturesDemo_SingleTapIOS {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         XCUITestOptions options = new XCUITestOptions();
         options.setDeviceName("iPhone 16 Plus");
-        options.setUdid("A332C391-A85E-4B1E-8F55-63695EB04AED");
+        options.setUdid("9C4CF5F8-F6CD-44FC-AC73-5B595592AD1B");
         options.setForceAppLaunch(true);
 //        options.setPlatformVersion("17.5");
 //        options.setUdid("62622A19-BE5E-45CE-AF31-EDE73B855E60");
