@@ -23,7 +23,7 @@ public class HandlingGesturesDemo_LongPress_ios {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         XCUITestOptions options = new XCUITestOptions();
         options.setDeviceName("iPhone 16 Plus");
-        options.setUdid("A332C391-A85E-4B1E-8F55-63695EB04AED");
+        options.setUdid("9C4CF5F8-F6CD-44FC-AC73-5B595592AD1B");
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/ios-app.zip");
 //        options.setAutoWebview(true);
 //        options.setAppPushTimeout(Duration.ofMillis(50000));
@@ -36,26 +36,26 @@ public class HandlingGesturesDemo_LongPress_ios {
 
         WebElement elementcircle = driver.findElement(AppiumBy.xpath("//XCUIElementTypeButton[@name=\"plus.circle\"]"));
         Actions act = new Actions(driver);
-        act.doubleClick(elementcircle).build().perform();
+        act.click(elementcircle).build().perform();
 
         WebElement element =   driver.findElement(AppiumBy.xpath("//XCUIElementTypeTextField[@value=\"Title\"]"));
-        //long press gesture handling
-        Point location = element.getLocation();
-        Dimension size = element.getSize();
-        Point centerofelement = getCenterElement(location, size);
-
-
-        PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
-        Sequence seq = new Sequence(touchaction1, 1)
-                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),centerofelement))
-                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(touchaction1,Duration.ofSeconds(3)))
-                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(Collections.singletonList(seq));
+//        //long press gesture handling
+//        Point location = element.getLocation();
+//        Dimension size = element.getSize();
+//        Point centerofelement = getCenterElement(location, size);
+//
+//
+//        PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
+//        Sequence seq = new Sequence(touchaction1, 1)
+//                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),centerofelement))
+//                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+//                .addAction(new Pause(touchaction1,Duration.ofSeconds(3)))
+//                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+//        driver.perform(Collections.singletonList(seq));
 
         //Alternative way using Actions class
-//        Actions act = new Actions(driver);
-//        act.clickAndHold(element).pause(Duration.ofSeconds(4)).build().perform();
+        Actions action = new Actions(driver);
+        action.clickAndHold(element).pause(Duration.ofSeconds(4)).build().perform();
 
         Thread.sleep(3000);
         driver.quit();

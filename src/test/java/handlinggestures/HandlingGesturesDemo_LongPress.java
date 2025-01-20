@@ -56,7 +56,7 @@ public class HandlingGesturesDemo_LongPress {
         Sequence seq = new Sequence(touchaction1, 1)
                 .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),centerofelement))
                 .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(touchaction1,Duration.ofSeconds(3)))
+                    .addAction(new Pause(touchaction1,Duration.ofSeconds(3)))// this is the code that makes to do thelong press
                 .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
         driver.perform(Collections.singletonList(seq));
 
@@ -65,7 +65,7 @@ public class HandlingGesturesDemo_LongPress {
 //        Actions act = new Actions(driver);
 //        act.clickAndHold(element).pause(Duration.ofSeconds(4)).build().perform();
 //
-//        System.out.println(driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id=\"android:id/title\" and @text=\"Sample menu\"]")).isDisplayed());
+        System.out.println(driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id=\"android:id/title\" and @text=\"Sample menu\"]")).isDisplayed());
 
         Thread.sleep(3000);
 

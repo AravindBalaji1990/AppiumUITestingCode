@@ -50,34 +50,12 @@ public class HandlingGesturesDemo_SingleTap {
 //        element.click();
 
         //alternative way
-//        Actions act = new Actions(driver);
+        Actions act = new Actions(driver);
 //        act.moveToElement(element).click().build().perform();
-//        act.click(element).build().perform();
+        act.click(element).build().perform();
 
         //Perform a tap action
-
-        //locaiton of the lementi n the app to perform touch action
-        Point location = element.getLocation();
-        System.out.println("the location the element "+ location);
-        Dimension size = element.getSize();
-        System.out.println("the size the element "+ size);
-        Point centerofelement = getCenterElement(location, size);
-
-        // we need to perform a touch action
-        PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
-        // we will perform the series of actions on the element
-        Sequence seq = new Sequence(touchaction1, 1)
-                //this simulates the tap
-                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),centerofelement))
-//                // this simulates the tap onthe element
-                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-//                // this simulates the tap duration
-                .addAction(new Pause(touchaction1,Duration.ofMillis(500)))
-//                // this simulates the relase of tap/finger on the element
-                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-//
-//        // this will perfomr the series of actions
-        driver.perform(Collections.singletonList(seq));
+//        singleTap(element, driver);
 
         Thread.sleep(5000);
         driver.quit();
@@ -88,5 +66,36 @@ public class HandlingGesturesDemo_SingleTap {
     public static Point getCenterElement(Point location, Dimension dim) {
         return new Point(location.getX() + dim.getWidth() / 2, location.getY() + dim.getHeight() / 2);
 
+    }
+
+    public static void singleTap(WebElement element, AndroidDriver driver) {
+        Point location = element.getLocation();
+        System.out.println("the location the element " + location);
+        Dimension size = element.getSize();
+        System.out.println("the size the element " + size);
+        Point centerofelement = getCenterElement(location, size);
+        System.out.println("center of the element : " + centerofelement);
+
+        // we need to perform a touch action
+        PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
+        // we will perform the series of actions on the element
+        Sequence seq = new Sequence(touchaction1, 1)
+                //this simulates the tap
+                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelement))
+//                // this simulates the tap onthe element
+                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+//                // this simulates the tap duration
+                .addAction(new Pause(touchaction1, Duration.ofMillis(500)))
+//                // this simulates the relase of tap/finger on the element
+                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+//        .addAction(new Pause(touchaction1, Duration.ofMillis(500)))
+//                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+//                .addAction(new Pause(touchaction1, Duration.ofMillis(500)))
+////                // this simulates the relase of tap/finger on the element
+//                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+//
+//        // this will perfomr the series of actions
+        driver.perform(Collections.singletonList(seq));
     }
 }
