@@ -23,26 +23,22 @@ public class HandlingGestureDemo_DragandDrop {
 
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
 
-        AppiumDriverLocalService service =AppiumDriverLocalService.buildDefaultService();
-        service.start();
-        System.out.println(service.isRunning());
-
 
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
         options.setDeviceName("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
+//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
 //        options.setAppPackage("com.saucelabs.mydemoapp.rn");
 //        options.setAppActivity("com.saucelabs.mydemoapp.rn.MainActivity");
         options.setAppWaitForLaunch(true);
         options.setAppWaitDuration(Duration.ofMillis(50000));
-//        options.setAppPackage("io.appium.android.apis");
-//        options.setAppActivity("io.appium.android.apis.ApiDemos");
-//        options.setCapability("","");
+        options.setAppPackage("io.appium.android.apis");
+        options.setAppActivity("io.appium.android.apis.ApiDemos");
+
 
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
-        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
+//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
 
         // calling the andorid driver to run the app̵
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
@@ -67,17 +63,21 @@ public class HandlingGestureDemo_DragandDrop {
         Point destinationpointer = getCenterElement(source.getLocation(), destination.getSize());
 
         PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "touch1");
-        Sequence seq = new Sequence(finger1,1)
-                .addAction(finger1.createPointerMove(Duration.ZERO,PointerInput.Origin.viewport(), sourcepointer))
+        Sequence seq = new Sequence(finger1, 1)
+                .addAction(finger1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), sourcepointer))
                 .addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(finger1,Duration.ofMillis(500)))
-                .addAction(finger1.createPointerMove(Duration.ofMillis(100),PointerInput.Origin.viewport(), destinationpointer))
+                .addAction(new Pause(finger1, Duration.ofMillis(500)))
+                .addAction(finger1.createPointerMove(Duration.ofMillis(100), PointerInput.Origin.viewport(), destinationpointer))
                 .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
         driver.perform(Collections.singletonList(seq));
         Thread.sleep(5000);
-    System.out.println(driver.findElement(AppiumBy.id("io.appium.android.apis:id/drag_result_text")).isDisplayed());
+        System.out.println(driver.findElement(AppiumBy.id("io.appium.android.apis:id/drag_result_text")).isDisplayed());
+
+        Thread.sleep(5000);
+        driver.quit();
 
     }
+
     public static Point getCenterElement(Point location, Dimension dim) {
         return new Point(location.getX() + dim.getWidth() / 2, location.getY() + dim.getHeight() / 2);
 

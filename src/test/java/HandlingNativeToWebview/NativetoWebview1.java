@@ -28,15 +28,15 @@ public class NativetoWebview1 {
         XCUITestOptions options = new XCUITestOptions();
         options.setPlatformName("IOS");
         options.setDeviceName("iPhone 16 Plus");
-        options.setUdid("A332C391-A85E-4B1E-8F55-63695EB04AED");
+        options.setUdid("9C4CF5F8-F6CD-44FC-AC73-5B595592AD1B");
         options.setAutomationName(AutomationName.IOS_XCUI_TEST);
 //        options.autoWebview();
 //        options.autoGrantPermissions();
 //        options.setAutoWebview(true);
 //        options.setAutoWebviewTimeout(Duration.ofMillis(5000));
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
-        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/iOS-Simulator-MyRNDemoApp.1.3.0-162.zip");
-//        options.setBundleId("com.saucelabs.mydemoapp.rn");
+//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/iOS-Simulator-MyRNDemoApp.1.3.0-162.zip");
+        options.setBundleId("com.saucelabs.mydemoapp.rn");
 
 //        options.setAppWaitDuration(Duration.ofMillis(50000));
 //        options.setAppPackage("com.saucelabs.mydemoapp.rn");
@@ -80,8 +80,8 @@ public class NativetoWebview1 {
         //driver.context("NATIVE_APP");
         Thread.sleep(3000);
 
-        driver.findElement(AppiumBy.xpath("//XCUIElementTypeTextView[@value='Search the web']")).clear();
-        driver.findElement(AppiumBy.xpath("//XCUIElementTypeTextView[@value='Search the web']")).sendKeys("test appium");
+//        driver.findElement(AppiumBy.xpath("//XCUIElementTypeTextView[@value='Search the web']")).clear();
+//        driver.findElement(AppiumBy.xpath("//XCUIElementTypeTextView[@value='Search the web']")).sendKeys("test appium");
 
 //        try{
 //            driver.findElement(AppiumBy.accessibilityId("No thanks")).click();

@@ -32,7 +32,7 @@ public class HandlingGestures_swipe_leftright {
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
 //        options.setApp("");
         // capability to allow the location based permission or any default permission
-//        options.autoGrantPermissions();
+        options.setAutoGrantPermissions(true);
 //        options.setAppWaitForLaunch(true);
 //        options.setAppWaitDuration(Duration.ofMillis(50000));
         options.setAppPackage("co.motovolt.motovoltapp");
@@ -51,9 +51,19 @@ public class HandlingGestures_swipe_leftright {
         WebElement ele = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup/following-sibling::android.widget.TextView[@text='Drive Less, e-Cycle More!']/preceding-sibling::android.view.ViewGroup/android.widget.ImageView"));
 
         swipeLeft(driver, ele);
+
         Thread.sleep(5000);
-//        WebElement ele2 = driver.findElement(AppiumBy.xpath("//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.widget.ImageView"));
+
+//
+        WebElement ele2 = driver.findElement(AppiumBy.xpath("//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.widget.ImageView"));
+        swipeLeft(driver, ele2);
 //        swipeRight(driver, ele2);
+
+        WebElement ele3 = driver.findElement(AppiumBy.xpath("//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageView"));
+        swipeLeft(driver, ele3);
+
+        System.out.println(driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text=\"REGISTER\"]")).isDisplayed());
+
 
         Thread.sleep(5000);
         driver.quit();

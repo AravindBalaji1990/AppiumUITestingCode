@@ -21,8 +21,8 @@ import java.util.Set;
 
 public class NativetoWebview {
 
-//    public static AndroidDriver driver;
-    public  static void main(String[] args) throws MalformedURLException, InterruptedException {
+    //    public static AndroidDriver driver;
+    public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
         options.setDeviceName("29221JEGR00379");
@@ -32,20 +32,21 @@ public class NativetoWebview {
         options.setAutoWebview(true);
         options.setAutoWebviewTimeout(Duration.ofMillis(5000));
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
-//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android-MyDemoAppRN.1.3.0.build-244.apk");
+//        options.setApp("/Users/aravindbalaji/Documents/Appium/SampleApp/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
 
 //        options.setAppWaitDuration(Duration.ofMillis(50000));
-//        options.setAppPackage("com.saucelabs.mydemoapp.rn");
-        options.setAppPackage("io.appium.android.apis");
-//        options.setAppActivity("com.saucelabs.mydemoapp.rn.MainActivity");
-        options.setAppActivity("io.appium.android.apis.ApiDemos");
+        options.setAppPackage("com.swaglabsmobileapp");
+
+        options.setAppActivity("com.swaglabsmobileapp.MainActivity");
+
         options.setAppWaitForLaunch(true);
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
 
         Thread.sleep(5000);
         driver.findElement(AppiumBy.xpath("(//android.widget.ImageView[@class=\"android.widget.ImageView\"])[1]")).click();
+//        driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Views\"]")).click();
 
-//        driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"WebView\").instance(0))")).click();
+        driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"WebView\").instance(0))")).click();
         Thread.sleep(5000);
         driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text=\"Products\" and @class=\"android.widget.TextView\"]")).click();
         Thread.sleep(5000);
@@ -61,9 +62,9 @@ public class NativetoWebview {
         //we are trying to identify the element position
         // to do a tap
         Point location = element.getLocation();
-        System.out.println("the location the element "+ location);
+        System.out.println("the location the element " + location);
         Dimension size = element.getSize();
-        System.out.println("the size the element "+ size);
+        System.out.println("the size the element " + size);
         Point centerofelement = getCenterElement(location, size);
 //        System.out.println("where i am " +driver.getContext());
 //        System.out.println("where i am " +driver.getContextHandles());
@@ -82,14 +83,14 @@ public class NativetoWebview {
 
         PointerInput touchaction2 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
         Sequence seq2 = new Sequence(touchaction1, 1)
-                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),centerofelement))
+                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelement))
                 .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(touchaction1,Duration.ofMillis(500)))
+                .addAction(new Pause(touchaction1, Duration.ofMillis(500)))
                 .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
         driver.perform(Collections.singletonList(seq2));
         Thread.sleep(30000);
-        System.out.println("where i am " +driver.getContext());
-        System.out.println("where i am " +driver.getContextHandles());
+        System.out.println("where i am " + driver.getContext());
+        System.out.println("where i am " + driver.getContextHandles());
         //check the current context
         driver.getContext();
         //check for any other webview available

@@ -20,9 +20,6 @@ import java.util.Collections;
 public class HandlingGestureDemo_DragandDrop_Alternative {
 
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
-        AppiumDriverLocalService service =AppiumDriverLocalService.buildDefaultService();
-        service.start();
-        System.out.println(service.isRunning());
 
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
@@ -58,11 +55,15 @@ public class HandlingGestureDemo_DragandDrop_Alternative {
 
         //Drag and drop alternative
         Actions act = new Actions(driver);
-        act.clickAndHold(source).moveToElement(destination).build().perform();
+//        act.clickAndHold(source).moveToElement(destination).build().perform();
 
-//        act.dragAndDrop(source, destination).build().perform();
+        // alternative approach but within the same Actions class
+        act.dragAndDrop(source, destination).build().perform();
 
-    System.out.println(driver.findElement(AppiumBy.id("io.appium.android.apis:id/drag_result_text")).isDisplayed());
+        System.out.println(driver.findElement(AppiumBy.id("io.appium.android.apis:id/drag_result_text")).isDisplayed());
+
+        Thread.sleep(3000);
+        driver.quit();
 
     }
 }

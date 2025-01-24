@@ -26,29 +26,34 @@ public class HandlingNotification {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("29221JEGR00379");
+        options.setUdid("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.setAppPackage("com.flipkart.android");
         options.setAppActivity("com.flipkart.android.activity.HomeFragmentHolderActivity");
         options.setAppWaitForLaunch(true);
         options.setAppWaitDuration(Duration.ofMillis(50000));
+        options.setAutoGrantPermissions(true);
 
         // calling the andorid driver to run the app
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
 
 
         Thread.sleep(5000);
-        driver.findElement(AppiumBy.xpath("(//android.widget.ImageView[@resource-id=\"com.flipkart.android:id/iv_checkbox\"])[4]")).click();
+//        driver.findElement(AppiumBy.xpath("(//android.widget.ImageView[@resource-id=\"com.flipkart.android:id/iv_checkbox\"])[4]")).click();
+        driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id=\"com.flipkart.android:id/tv_text\" and @text=\"English\"]/following-sibling::android.widget.ImageView")).click();
         Thread.sleep(5000);
 
 //        driver.findElement(AppiumBy.xpath("(//android.widget.Button[@text='CONTINUE']")).click();
-        driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"CONTINUE\")")).click();
-        Thread.sleep(5000);
+//        driver.findElement(AppiumBy.androidUIAutomator("new UiSelector().text(\"CONTINUE\")")).click();
+//        Thread.sleep(5000);
 
 //        driver.findElement(AppiumBy.xpath("(//android.widget.EditText[@content-desc=\"Phone Number\"]")).sendKeys("8939624446");
 //        driver.findElement(AppiumBy.accessibilityId("Phone Number")).click();
        WebElement ph =  driver.findElement(AppiumBy.accessibilityId("Phone Number"));
-//        WebElement inputphonenumber =  driver.findElement(AppiumBy.accessibilityId("Phone Number"));
+
+       // if keystroke is not identified then click onthe text box and then try keystroke
+        ph.click();
+//        ph.sendKeys("8939624446");
 
         // Keyboard action simulator to enter the phone number
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_8));
@@ -70,9 +75,20 @@ public class HandlingNotification {
         driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id=\"com.flipkart.android:id/button\"]")).click();
 
 
+
+
         // openNotificaitons -> its inbuilt function
         driver.openNotifications();
-        Thread.sleep(10000);
+//        Thread.sleep(2000);
+
+        try {
+            driver.findElement(AppiumBy.xpath("//*[@text='Clear all']")).click();
+        }catch (Exception e) {
+        }
+
+        Thread.sleep(5000);
+
+
 
 //        System.out.println("data : " +driver.findElement(AppiumBy.xpath("//android.widget.LinearLayout[@resource-id=\"com.android.systemui:id/keyguard_message_area_container\"]\n")).getText());
         String otpmessage = driver.findElement(AppiumBy.xpath("//*[contains(@text,'OTP')]")).getText();
@@ -97,13 +113,8 @@ public class HandlingNotification {
 //        }
 
         swipeUp(driver);
-        // to clos e the notificaiotn dn ago back to the app
-        Dimension size = driver.manage().window().getSize();
-        int startx = size.width/2;
-        int starty = (int) (size.height*0.8);
-        int endy = (int) (size.height*0.2);
-
-
+//        // to clos e the notificaiotn dn ago back to the app alternative way
+//        driver.navigate().back();
 
 
         Thread.sleep(5000);
@@ -117,7 +128,7 @@ public class HandlingNotification {
         int screenWidth = driver.manage().window().getSize().getWidth();
 
         // Calculate start and end points for swipe
-        int startX = screenWidth / 2;
+        int startX = screenWidth / 2;// width of the screen no use in swipe up
         int startY = (int) (screenHeight * 0.8); // Start near the bottom
         int endY = (int) (screenHeight * 0.2);   // End near the top
 
