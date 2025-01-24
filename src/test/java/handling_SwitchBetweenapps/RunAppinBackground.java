@@ -35,12 +35,14 @@ public class RunAppinBackground {
         element.click();
 
         //it makes the app to keep running in back ground
-        driver.runAppInBackground(Duration.ofSeconds(10));
+        driver.runAppInBackground(Duration.ofSeconds(10));// till 10 seocnds the app will be running in background
 
+        //after 10 seconds
+        // activateApp - to open any application
 //        driver.activateApp("com.flipkart.android");
 //        System.out.println("the new app opened : " + driver.getCurrentPackage());
 //
-//        Thread.sleep(5000);
+        Thread.sleep(5000);
         driver.activateApp("io.appium.android.apis");
         WebElement element2 = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Animation']"));
         element2.click();
