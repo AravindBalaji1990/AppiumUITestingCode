@@ -29,18 +29,20 @@ public class SampleCode1 {
         // driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"Sauce Labs Onesie\")").click();
 
 
-        List<WebElement> mytext = driver.findElements(AppiumBy.xpath("//android.widget.ScrollView[@content-desc=\"test-PRODUCTS\"]/android.view.ViewGroup"));
+        List<WebElement> mytext = driver.findElements(AppiumBy.xpath("//android.widget.ScrollView[@content-desc=\"test-PRODUCTS\"]//android.view.ViewGroup/android.widget.ImageView"));
         System.out.println(mytext.size());
 
+//                                                                        new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text("TextFields").instance(0))
+         driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"Sauce Labs Onesie\")"));
+        List<WebElement> mytext1 = driver.findElements(AppiumBy.xpath("//android.widget.ScrollView[@content-desc=\"test-PRODUCTS\"]//android.view.ViewGroup/android.widget.ImageView"));
+
+        mytext.addAll(mytext1);
+
         for (int i = 0; i < mytext.size(); i++) {
-
-            if (mytext.get(i).getText().equalsIgnoreCase("Sauce Labs Onesie")) {
-                System.out.println("All Text:" + mytext.get(i).getText());
-            }
-//            mytext.get(i).click();
-            Thread.sleep(3000);
-            driver.quit();
-
+            System.out.println("All Text:" + mytext.get(i).getText());
         }
+
+        Thread.sleep(3000);
+        driver.quit();
     }
 }
