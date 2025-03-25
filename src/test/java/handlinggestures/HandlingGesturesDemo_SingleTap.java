@@ -6,6 +6,7 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.remote.AutomationName;
 import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -46,16 +47,21 @@ public class HandlingGesturesDemo_SingleTap {
 //        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView"));
         ;
 
-        // alternative way
+        // alternative way - 1
 //        element.click();
 
-        //alternative way
-        Actions act = new Actions(driver);
+        //alternative way -2
+//        Actions act = new Actions(driver);
 //        act.moveToElement(element).click().build().perform();
-        act.click(element).build().perform();
+//        act.click(element).build().perform();
 
         //Perform a tap action
 //        singleTap(element, driver);
+
+        // click with javascript executor  will not work with mobile applciaiton
+        // this si not a part of UiAutomator2Options/AndroidDriver
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("argument[0].click();",element);
 
         Thread.sleep(5000);
         driver.quit();

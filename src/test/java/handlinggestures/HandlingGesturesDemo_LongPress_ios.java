@@ -22,14 +22,11 @@ import java.util.Collections;
 public class HandlingGesturesDemo_LongPress_ios {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         XCUITestOptions options = new XCUITestOptions();
-        options.setDeviceName("iPhone 16 Plus");
-        options.setUdid("9C4CF5F8-F6CD-44FC-AC73-5B595592AD1B");
+        options.setUdid("08BBF8F2-37A6-42E0-AB9F-65C5E6AEC31B");
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/ios-app.zip");
 //        options.setAutoWebview(true);
 //        options.setAppPushTimeout(Duration.ofMillis(50000));
         options.setUseNewWDA(false);
-
-
         options.setBundleId("com.moataz.dailycheck");
 
         IOSDriver driver = new IOSDriver(new URL("http://127.0.0.1:4723"), options);
@@ -40,22 +37,22 @@ public class HandlingGesturesDemo_LongPress_ios {
 
         WebElement element =   driver.findElement(AppiumBy.xpath("//XCUIElementTypeTextField[@value=\"Title\"]"));
 //        //long press gesture handling
-//        Point location = element.getLocation();
-//        Dimension size = element.getSize();
-//        Point centerofelement = getCenterElement(location, size);
-//
-//
-//        PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
-//        Sequence seq = new Sequence(touchaction1, 1)
-//                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),centerofelement))
-//                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-//                .addAction(new Pause(touchaction1,Duration.ofSeconds(3)))
-//                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-//        driver.perform(Collections.singletonList(seq));
+        Point location = element.getLocation();
+        Dimension size = element.getSize();
+        Point centerofelement = getCenterElement(location, size);
+
+
+        PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
+        Sequence seq = new Sequence(touchaction1, 1)
+                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),centerofelement))
+                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(new Pause(touchaction1,Duration.ofSeconds(3)))
+                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+        driver.perform(Collections.singletonList(seq));
 
         //Alternative way using Actions class
-        Actions action = new Actions(driver);
-        action.clickAndHold(element).pause(Duration.ofSeconds(4)).build().perform();
+//        Actions action = new Actions(driver);
+//        action.clickAndHold(element).pause(Duration.ofSeconds(4)).build().perform();
 
         Thread.sleep(3000);
         driver.quit();
