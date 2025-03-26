@@ -9,6 +9,7 @@ import io.appium.java_client.remote.AutomationName;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
@@ -38,7 +39,18 @@ public class HandlingNotification {
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
 
 
+        // this will clear the content of the notifications
         Thread.sleep(5000);
+        driver.openNotifications();// open the notificaiton panel
+        try {
+            driver.findElement(AppiumBy.xpath("//*[@text=\"Clear all\"]")).click();
+        }catch (Exception e){
+            System.out.println("no clear button visible");
+            swipeUp(driver);
+        }
+
+        Thread.sleep(5000);
+
 //        driver.findElement(AppiumBy.xpath("(//android.widget.ImageView[@resource-id=\"com.flipkart.android:id/iv_checkbox\"])[4]")).click();
         driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id=\"com.flipkart.android:id/tv_text\" and @text=\"English\"]/following-sibling::android.widget.ImageView")).click();
         Thread.sleep(5000);
@@ -49,12 +61,18 @@ public class HandlingNotification {
 
 //        driver.findElement(AppiumBy.xpath("(//android.widget.EditText[@content-desc=\"Phone Number\"]")).sendKeys("8939624446");
 //        driver.findElement(AppiumBy.accessibilityId("Phone Number")).click();
-       WebElement ph =  driver.findElement(AppiumBy.accessibilityId("Phone Number"));
+//       WebElement ph =  driver.findElement(AppiumBy.accessibilityId("Phone Number"));
+       WebElement ph =  driver.findElement(AppiumBy.xpath("//android.widget.EditText[@content-desc=\"Phone Number\"]"));
 
        // if keystroke is not identified then click onthe text box and then try keystroke
-        ph.click();
-//        ph.sendKeys("8939624446");
+//        ph.click();
 
+        Actions act = new Actions(driver);
+        act.click(ph).build().perform();
+
+//        driver.hideKeyboard();// this will hide the keyboard
+//        ph.sendKeys("8939624446"); // this will throw error
+String num = "8939624446";
         // Keyboard action simulator to enter the phone number
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_8));
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_9));
@@ -66,6 +84,31 @@ public class HandlingNotification {
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_4));
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_4));
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_6));
+
+        for (int i =0 ;i <num.length();i++) {
+            switch (num) {
+                case "1":
+                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
+                case "2":
+                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
+                case "3":
+                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
+                case "4":
+                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
+                case "5":
+                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
+                case "6":
+                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
+                case "7":
+                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
+                case "8":
+                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
+                case "9":
+                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
+                case "0":
+                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
+            }
+        }
         // in certain instance the sendkeys will not work
 //        inputphonenumber.sendKeys("8939624446");
         // in Mobile automation the javascript executor will not work
@@ -112,6 +155,7 @@ public class HandlingNotification {
 //            driver.findElement(AppiumBy.xpath("")).sendKeys(String.valueOf(data[i]));
 //        }
 
+        // close the notificaiton panel - using gesture based on the screen size
         swipeUp(driver);
 //        // to clos e the notificaiotn dn ago back to the app alternative way
 //        driver.navigate().back();
@@ -123,6 +167,7 @@ public class HandlingNotification {
 
 
     public static void swipeUp(AndroidDriver driver) {
+        // this does not focus on th element to swipe up but instead on the entire screen size / view port
         // Get screen size
         int screenHeight = driver.manage().window().getSize().getHeight();
         int screenWidth = driver.manage().window().getSize().getWidth();
