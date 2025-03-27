@@ -10,6 +10,7 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
@@ -24,27 +25,33 @@ public class HandlingGestureDemo_Zoom {
 
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         XCUITestOptions options = new XCUITestOptions();
-        options.setDeviceName("iPhone 16 Plus");
-        options.setUdid("9C4CF5F8-F6CD-44FC-AC73-5B595592AD1B");
+        options.setUdid("08BBF8F2-37A6-42E0-AB9F-65C5E6AEC31B");
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/ios-app.zip");
-        options.setApp("/Users/aravindbalaji/Documents/Appium/SampleApp/iOS-Simulator-MyRNDemoApp.1.3.0-162.zip");
+//        options.setApp("/Users/aravindbalaji/Documents/Appium/SampleApp/iOS-Simulator-MyRNDemoApp.1.3.0-162.zip");
 //        options.setAutoWebview(true);
+
         options.setForceAppLaunch(true);
 //        options.setPermissions();
 
 
 //        options.setBundleId("com.moataz.dailycheck");
-//        options.setBundleId("com.saucelabs.mydemoapp.rn");
+        options.setBundleId("com.saucelabs.mydemoapp.rn");
+
 
         IOSDriver driver = new IOSDriver(new URL("http://127.0.0.1:4723"), options);
         Thread.sleep(5000);
 
+        System.out.println(driver.getLocation());
+//        driver.setLocation();
+
+        Actions act = new Actions(driver);
         WebElement element1 = driver.findElement(AppiumBy.xpath("//XCUIElementTypeButton[@name=\"tab bar option menu\"]"));
-        element1.click();
+        act.click(element1).build().perform();
         Thread.sleep(10000);
 
         WebElement element2 = driver.findElement(AppiumBy.xpath("//XCUIElementTypeOther[@name=\"menu item drawing\"]"));
-        element2.click();
+        act.click(element2).build().perform();
+
 
         Thread.sleep(10000);
 
@@ -57,7 +64,7 @@ public class HandlingGestureDemo_Zoom {
                 .addAction(finger1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelememnt))
                 .addAction(finger1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
                 .addAction(new Pause(finger1, Duration.ofMillis(200)))
-                .addAction(finger1.createPointerMove(Duration.ofMillis(200), PointerInput.Origin.viewport(), centerofelememnt.getX() + 100, centerofelememnt.getY() - 100))
+                .addAction(finger1.createPointerMove(Duration.ofMillis(200), PointerInput.Origin.viewport(), centerofelememnt.getX() + 1000, centerofelememnt.getY() - 100))
                 .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         PointerInput finger2 = new PointerInput(PointerInput.Kind.TOUCH, "touch2");
@@ -65,7 +72,7 @@ public class HandlingGestureDemo_Zoom {
                 .addAction(finger2.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelememnt))
                 .addAction(finger2.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
                 .addAction(new Pause(finger1, Duration.ofMillis(200)))
-                .addAction(finger2.createPointerMove(Duration.ofMillis(200), PointerInput.Origin.viewport(), centerofelememnt.getX() - 150, centerofelememnt.getY() + 150))
+                .addAction(finger2.createPointerMove(Duration.ofMillis(200), PointerInput.Origin.viewport(), centerofelememnt.getX() - 150, centerofelememnt.getY() + 1500))
                 .addAction(finger2.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         driver.perform(Arrays.asList(seq1, seq2));
@@ -80,6 +87,7 @@ public class HandlingGestureDemo_Zoom {
     }
 
 
+    //Screen level zoom in - this can be used in maps if there is no element to mention and zoom
     public static void zoomFunction(AndroidDriver driver) {
         Dimension dim = driver.manage().window().getSize();
         int centerX = dim.getWidth() / 2;

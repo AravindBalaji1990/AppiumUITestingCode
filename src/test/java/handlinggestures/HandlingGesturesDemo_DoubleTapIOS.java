@@ -23,10 +23,10 @@ public class HandlingGesturesDemo_DoubleTapIOS {
 
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         XCUITestOptions options = new XCUITestOptions();
-        options.setDeviceName("iPhone 15");
+        options.setDeviceName("iPhone 16");
         options.setForceAppLaunch(true);
-        options.setPlatformVersion("17.5");
-        options.setUdid("62622A19-BE5E-45CE-AF31-EDE73B855E60");
+//        options.setPlatformVersion("17.5");
+        options.setUdid("08BBF8F2-37A6-42E0-AB9F-65C5E6AEC31B");
         options.setUseNewWDA(false);
         options.setPlatformName(AutomationName.IOS_XCUI_TEST);
 
@@ -43,24 +43,24 @@ public class HandlingGesturesDemo_DoubleTapIOS {
         WebElement element = driver.findElement(AppiumBy.xpath("//XCUIElementTypeButton[@name=\"plus.circle\"]"));
 
         //Perform a double tap action
-//        Point location = element.getLocation();
-//        Dimension size = element.getSize();
-//        Point centerofelement = getCenterElement(location, size);
-//
-//
-//        PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
-//        Sequence seq = new Sequence(touchaction1, 1)
-//                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelement))
-//                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-//                .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
-//                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
-//                .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
-//                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-//        driver.perform(Collections.singletonList(seq));
+        Point location = element.getLocation();
+        Dimension size = element.getSize();
+        Point centerofelement = getCenterElement(location, size);
+
+
+        PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
+        Sequence seq = new Sequence(touchaction1, 1)
+                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelement))
+                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
+                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
+                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        driver.perform(Collections.singletonList(seq));
 
         //alternative
-        Actions act = new Actions(driver);
-        act.doubleClick(element).build().perform();
+//        Actions act = new Actions(driver);
+//        act.doubleClick(element).build().perform();
 
         Thread.sleep(5000);
         driver.quit();

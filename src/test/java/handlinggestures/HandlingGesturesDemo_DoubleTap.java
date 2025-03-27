@@ -42,8 +42,8 @@ public class HandlingGesturesDemo_DoubleTap {
 
         //alternative for double tap
 //        Actions act = new Actions(driver);
-////        act.doubleClick(element).pause(Duration.ofSeconds(5)).perform();
-//        act.click(element).click(element).build().perform();
+//        act.doubleClick(element).pause(Duration.ofMillis(500)).build().perform();
+//        act.click(element).pause(Duration.ofMillis(500)).click(element).build().perform();
 
 
         Thread.sleep(5000);
@@ -60,6 +60,7 @@ public class HandlingGesturesDemo_DoubleTap {
         Point location = element.getLocation();
         Dimension size = element.getSize();
         Point centerofelement = getCenterElement(location, size);
+
         PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
         Sequence seq = new Sequence(touchaction1, 1)
                 .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelement))
