@@ -5,7 +5,6 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.ios.PerformsTouchID;
 import io.appium.java_client.remote.AutomationName;
-import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;

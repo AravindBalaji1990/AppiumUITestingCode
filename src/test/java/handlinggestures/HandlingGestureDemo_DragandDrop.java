@@ -26,7 +26,7 @@ public class HandlingGestureDemo_DragandDrop {
 
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("29221JEGR00379");
+        options.setUdid("emulator-5554");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
 //        options.setAppPackage("com.saucelabs.mydemoapp.rn");
@@ -49,8 +49,8 @@ public class HandlingGestureDemo_DragandDrop {
         elementViews.click();
 
 
-        WebElement elementDragandDrop = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Drag and Drop']"));
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(elementDragandDrop));
+        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.presenceOfElementLocated(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Drag and Drop\"]")));
+        WebElement elementDragandDrop = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Drag and Drop\"]"));
         elementDragandDrop.click();
 
 
@@ -69,9 +69,11 @@ public class HandlingGestureDemo_DragandDrop {
                 .addAction(new Pause(finger1, Duration.ofMillis(500)))
                 .addAction(finger1.createPointerMove(Duration.ofMillis(100), PointerInput.Origin.viewport(), destinationpointer))
                 .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
         driver.perform(Collections.singletonList(seq));
         Thread.sleep(5000);
-        System.out.println(driver.findElement(AppiumBy.id("io.appium.android.apis:id/drag_result_text")).isDisplayed());
+
+        System.out.println(driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Dropped!']")).isDisplayed());
 
         Thread.sleep(5000);
         driver.quit();

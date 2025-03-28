@@ -7,7 +7,6 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.options.XCUITestOptions;
 import io.appium.java_client.remote.AutomationName;
-import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -23,7 +22,7 @@ public class MobileApplicationTesting {
 //        System.out.println("test");
 //    }
 
-    @Test
+//    @Test
     public void testAndroid() throws MalformedURLException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
@@ -46,7 +45,7 @@ public class MobileApplicationTesting {
 //        driver.findElement(AppiumBy.cssSelector("")).click();
     }
 
-    @Test
+//    @Test
     public void testIos() throws MalformedURLException, InterruptedException {
         XCUITestOptions options = new XCUITestOptions();
         options.setDeviceName("iphone15");

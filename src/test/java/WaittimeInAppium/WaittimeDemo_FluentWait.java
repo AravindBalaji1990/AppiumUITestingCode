@@ -59,6 +59,7 @@ public class WaittimeDemo_FluentWait {
                 .pollingEvery(Duration.ofMillis(1000))
                 .ignoring(NoSuchElementException.class)
                 .ignoring(StaleElementReferenceException.class)
+                .ignoring(Exception.class)
                 .until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 }

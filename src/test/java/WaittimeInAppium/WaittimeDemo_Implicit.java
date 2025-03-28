@@ -25,7 +25,11 @@ public class WaittimeDemo_Implicit {
 
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
 
+        //IMplicit wait
+        // it willwait till allthe DOM structure / resources in the background to be populated completely within the stipulated period of time
+        // if the resources are available before the stipulated period of time then the rest of the time will be ignored
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
         WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"));
         System.out.println(element.isDisplayed());
 
