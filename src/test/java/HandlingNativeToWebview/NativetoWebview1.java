@@ -23,12 +23,11 @@ import java.util.Set;
 
 public class NativetoWebview1 {
 
-//    public static AndroidDriver driver;
-    public  static void main(String[] args) throws MalformedURLException, InterruptedException {
+    //    public static AndroidDriver driver;
+    public static void main(String[] args) throws MalformedURLException, InterruptedException {
         XCUITestOptions options = new XCUITestOptions();
         options.setPlatformName("IOS");
-        options.setDeviceName("iPhone 16 Plus");
-        options.setUdid("9C4CF5F8-F6CD-44FC-AC73-5B595592AD1B");
+        options.setUdid("08BBF8F2-37A6-42E0-AB9F-65C5E6AEC31B");
         options.setAutomationName(AutomationName.IOS_XCUI_TEST);
 //        options.autoWebview();
 //        options.autoGrantPermissions();
@@ -68,13 +67,13 @@ public class NativetoWebview1 {
         Thread.sleep(10000);
 
         Set<String> contextname = driver.getContextHandles();
-        for (String data : contextname){
-            System.out.println("webview content avaiable -> " +data);
+        for (String data : contextname) {
+            System.out.println("webview content avaiable -> " + data);
         }
 //        System.out.println("URL of the page " +driver.getCurrentUrl());
 
-        System.out.println("where i am :" +driver.getContext());
-        System.out.println("where i am :" +driver.getContextHandles());
+        System.out.println("where i am :" + driver.getContext());
+        System.out.println("where i am :" + driver.getContextHandles());
         System.out.println(driver.getPageSource());
 
         //driver.context("NATIVE_APP");
@@ -116,27 +115,32 @@ public class NativetoWebview1 {
         driver.quit();
     }
 
-    public static  void singleTap(IOSDriver driver, WebElement element){
+    public static void singleTap(IOSDriver driver, WebElement element) {
         Point location = element.getLocation();
-        System.out.println("the location the element "+ location);
+        System.out.println("the location the element " + location);
         Dimension size = element.getSize();
-        System.out.println("the size the element "+ size);
+        System.out.println("the size the element " + size);
         Point centerofelement = getCenterElement(location, size);
 
-        // we need to perform a touch action
-        PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
-        Sequence seq = new Sequence(touchaction1, 1)
-                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelement))
-                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
-                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
-                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(Collections.singletonList(seq));
+        try {
+            // we need to perform a touch action
+            PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
+            Sequence seq = new Sequence(touchaction1, 1)
+                    .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelement))
+                    .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                    .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
+                    .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
+                    .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
+                    .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+            driver.perform(Collections.singletonList(seq));
 
-        // this will perfomr the series of actions
-        driver.perform(Collections.singletonList(seq));
+            // this will perfomr the series of actions
+            driver.perform(Collections.singletonList(seq));
+        } catch (Exception e) {
+
+        }
     }
+
     public static Point getCenterElement(Point location, Dimension dim) {
         return new Point(location.getX() + dim.getWidth() / 2, location.getY() + dim.getHeight() / 2);
 

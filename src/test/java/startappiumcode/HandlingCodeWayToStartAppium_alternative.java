@@ -32,7 +32,9 @@ public class HandlingCodeWayToStartAppium_alternative {
         try {
             UiAutomator2Options options = new UiAutomator2Options();
             options.setPlatformName("Android");
-            options.setDeviceName("29221JEGR00379");
+//            options.setDeviceName("29221JEGR00379");// do not use device name as its not perfect
+            options.setUdid("emulator-5554");
+
             options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
 //        options.setAppPackage("com.saucelabs.mydemoapp.rn");
@@ -74,6 +76,7 @@ public class HandlingCodeWayToStartAppium_alternative {
         } finally {
             //        driver.lockDevice();
             driver.quit();
+            System.out.println("cehcke the service is available : " + service.isRunning());
             service.stop();
 
         }

@@ -25,14 +25,15 @@ public class NativetoWebview {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("29221JEGR00379");
+        options.setUdid("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
 //        options.autoWebview();
-//        options.autoGrantPermissions();
+        options.autoGrantPermissions();
 //        options.setAutoWebview(true);
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/SampleApp/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
 //        options.setAppWaitDuration(Duration.ofMillis(50000));
+//        options.withBrowserName("Chrome");
         options.setAppPackage("com.swaglabsmobileapp");
         options.setAppActivity("com.swaglabsmobileapp.MainActivity");
 
@@ -59,17 +60,17 @@ public class NativetoWebview {
         Thread.sleep(5000);
 
         //check the current context
-        System.out.println("where i am " + driver.getContext());
+        System.out.println("where i am :" + driver.getContext());
 
         //check for any other webview available
-        System.out.println("where i am " + driver.getContextHandles());
+        System.out.println("how many handles are avaiable :  " + driver.getContextHandles());
 
         //check for any other webview available
         driver.getContextHandles();// 1 native view and 1 webview
         Thread.sleep(5000);
         Set<String> handles = driver.getContextHandles();
         for (String webviewcontent : handles) {
-            if (webviewcontent.equalsIgnoreCase("WEBVIEW")) {
+            if (webviewcontent.startsWith("WEBVIEW")) {
                 driver.context("WEBVIEW_com.swaglabsmobileapp");
                 System.out.println(driver.getPageSource());
                 break;
@@ -81,8 +82,10 @@ public class NativetoWebview {
         Thread.sleep(5000);
 
 
-        //Webview to native
+        //switch from Webview to native
         driver.context("NATIVE_APP");
+        Thread.sleep(3000);
+        driver.navigate().back();
         Thread.sleep(3000);
         driver.navigate().back();
 

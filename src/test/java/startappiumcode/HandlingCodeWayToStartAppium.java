@@ -23,17 +23,26 @@ public class HandlingCodeWayToStartAppium {
 
     public static void main(String[] args) throws MalformedURLException {
 
+        String ipaddress = "127.0.0.1";
+        int port = 4723;
+
+
         // using code level to start appium
         // where the appium main.js the ip address and the port number incwhich it runs
         AppiumServiceBuilder serviceBuilder = new AppiumServiceBuilder();
+        // windows users
+//        serviceBuilder.withAppiumJS(new File("C:\\Users\\aravi\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
+//                .withIPAddress("127.0.0.1").usingPort(4723).withTimeout(Duration.ofSeconds(120))
+//                .build().start();
+        //mac users
         serviceBuilder.withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"))
-                .withIPAddress("127.0.0.1").usingPort(4723).withTimeout(Duration.ofSeconds(120))
+                .withIPAddress(ipaddress).usingPort(port).withTimeout(Duration.ofSeconds(120))
                 .build().start();
 
 
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("29221JEGR00379");
+        options.setDeviceName("emulator-5554");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
 //        options.setAppPackage("com.saucelabs.mydemoapp.rn");
@@ -48,7 +57,7 @@ public class HandlingCodeWayToStartAppium {
         // calling the andorid driver to run the app̵
         AndroidDriver driver = null;
         try {
-             driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
+             driver = new AndroidDriver(new URL("http://"+ipaddress+":"+String.valueOf(port)), options);
 
 //        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView"));
             WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Views\"]\n"));
@@ -76,7 +85,7 @@ public class HandlingCodeWayToStartAppium {
         }finally {
             System.out.println("inside  finally block");
             driver.quit();
-            System.out.println(serviceBuilder.build().isRunning());
+            System.out.println("cehcking whether the service is up : " + serviceBuilder.build().isRunning());
             serviceBuilder.build().stop();
         }
 
