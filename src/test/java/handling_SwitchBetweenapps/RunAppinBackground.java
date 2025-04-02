@@ -15,7 +15,7 @@ public class RunAppinBackground {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("29221JEGR00379");
+        options.setUdid("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
 //        options.setAppPackage("com.saucelabs.mydemoapp.rn");
@@ -35,13 +35,13 @@ public class RunAppinBackground {
         element.click();
 
         //it makes the app to keep running in back ground
-        driver.runAppInBackground(Duration.ofSeconds(10));// till 10 seocnds the app will be running in background
+//        driver.runAppInBackground(Duration.ofSeconds(30));// till 10 seocnds the app will be running in background
 
         //after 10 seconds
         // activateApp - to open any application
 //        driver.activateApp("com.flipkart.android");
 //        System.out.println("the new app opened : " + driver.getCurrentPackage());
-//
+
         Thread.sleep(5000);
         driver.activateApp("io.appium.android.apis");
         WebElement element2 = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Animation']"));

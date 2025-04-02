@@ -16,10 +16,10 @@ public class WebviewCheck_chrome {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("29221JEGR00379");
+        options.setUdid("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.withBrowserName("Chrome");
-        options.setChromedriverExecutable(System.getProperty("user.dir") + "/src/test/resources/browser/chromedriver_mac");
+        options.setChromedriverExecutable(System.getProperty("user.dir") + "/src/test/resources/browser/chromedriver_134");
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), options);
         //code for chrome
         driver.get("https://bing.com");
