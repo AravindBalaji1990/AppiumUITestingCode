@@ -32,7 +32,7 @@ public class WaittimeDemo_WebDriverWait {
 
         WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"));
 
-        System.out.println(checkElementVisibility(driver, element, 30));
+//        System.out.println(checkElementVisibility(driver, element, 30));
         System.out.println(checkElementSize(driver, AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"),30, 1));
 
 
@@ -40,7 +40,7 @@ public class WaittimeDemo_WebDriverWait {
     }
 
 
-    public static boolean checkElementVisibility(AppiumDriver driver, WebElement element, long seconds) {
+    public static boolean checkElementPresense(AppiumDriver driver, WebElement element, long seconds) {
         boolean data = false;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         WebElement dataelement = wait.until(ExpectedConditions.visibilityOf(element));
