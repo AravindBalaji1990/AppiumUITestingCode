@@ -44,7 +44,7 @@ public class HandlingNotification {
         driver.openNotifications();// open the notificaiton panel
         try {
             driver.findElement(AppiumBy.xpath("//*[@text=\"Clear all\"]")).click();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("no clear button visible");
             swipeUp(driver);
         }
@@ -62,9 +62,9 @@ public class HandlingNotification {
 //        driver.findElement(AppiumBy.xpath("(//android.widget.EditText[@content-desc=\"Phone Number\"]")).sendKeys("8939624446");
 //        driver.findElement(AppiumBy.accessibilityId("Phone Number")).click();
 //       WebElement ph =  driver.findElement(AppiumBy.accessibilityId("Phone Number"));
-       WebElement ph =  driver.findElement(AppiumBy.xpath("//android.widget.EditText[@content-desc=\"Phone Number\"]"));
+        WebElement ph = driver.findElement(AppiumBy.xpath("//android.widget.EditText[@content-desc=\"Phone Number\"]"));
 
-       // if keystroke is not identified then click onthe text box and then try keystroke
+        // if keystroke is not identified then click onthe text box and then try keystroke
 //        ph.click();
 
         Actions act = new Actions(driver);
@@ -72,7 +72,7 @@ public class HandlingNotification {
 
 //        driver.hideKeyboard();// this will hide the keyboard
 //        ph.sendKeys("8939624446"); // this will throw error
-String num = "8939624446";
+        String num = "8939624446";
         // Keyboard action simulator to enter the phone number
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_8));
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_9));
@@ -85,7 +85,7 @@ String num = "8939624446";
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_4));
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_6));
 
-        for (int i =0 ;i <num.length();i++) {
+        for (int i = 0; i < num.length(); i++) {
             switch (num) {
                 case "1":
                     driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
@@ -115,9 +115,8 @@ String num = "8939624446";
 //        driver.executeScript("arguments[0].value='8939624446';", ph);
 
         Thread.sleep(5000);
+
         driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id=\"com.flipkart.android:id/button\"]")).click();
-
-
 
 
         // openNotificaitons -> its inbuilt function
@@ -126,25 +125,24 @@ String num = "8939624446";
 
         try {
             driver.findElement(AppiumBy.xpath("//*[@text='Clear all']")).click();
-        }catch (Exception e) {
+        } catch (Exception e) {
         }
 
         Thread.sleep(5000);
-
 
 
 //        System.out.println("data : " +driver.findElement(AppiumBy.xpath("//android.widget.LinearLayout[@resource-id=\"com.android.systemui:id/keyguard_message_area_container\"]\n")).getText());
         String otpmessage = driver.findElement(AppiumBy.xpath("//*[contains(@text,'OTP')]")).getText();
         System.out.println("the complete otp message : " + otpmessage);
         // we use a regex to validate or extract  the pattern related to otp
-        Pattern pattern  = Pattern.compile("[0-9]+");
+        Pattern pattern = Pattern.compile("[0-9]+");
         Matcher matcher = pattern.matcher(otpmessage);
         String smsotp = null;
-        while(matcher.find()) {
-            System.out.println("data from sms: " +matcher.toString());
-            if(matcher.group().toString().length() == 6) {
+        while (matcher.find()) {
+            System.out.println("data from sms: " + matcher.toString());
+            if (matcher.group().toString().length() == 6) {
                 String otpextract = matcher.group();
-                System.out.println("extracted data from sms : " +matcher.group());
+                System.out.println("extracted data from sms : " + matcher.group());
                 smsotp = matcher.group();
             }
         }
@@ -156,9 +154,9 @@ String num = "8939624446";
 //        }
 
         // close the notificaiton panel - using gesture based on the screen size
-        swipeUp(driver);
-//        // to clos e the notificaiotn dn ago back to the app alternative way
-//        driver.navigate().back();
+//        swipeUp(driver);
+//        // to close the notificaiotn dn ago back to the app alternative way
+        driver.navigate().back();
 
 
         Thread.sleep(5000);

@@ -9,15 +9,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Collections;
+import java.util.List;
 
-public class HandlingGestureDemo_swipe_ToTop {
+public class HandlingGestureDemo_swipe_ToTopForAElement {
 
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
@@ -40,9 +39,18 @@ public class HandlingGestureDemo_swipe_ToTop {
 //        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(element));
         element.click();
         Thread.sleep(5000);
-        swipeDown(driver);
-        Thread.sleep(5000);
-        swipeUp(driver);
+
+        int n =10;
+        for (int i =0 ; i< n;i++) {
+            swipeDown(driver);
+            List<WebElement> item = driver.findElements(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"TextFields\"]"));
+            if(item.size()>0){
+                System.out.println("the element is visible");
+                item.get(0).click();
+                break;
+            }
+        }
+
         //Scroll/swipe action - swipe  up
 //        Dimension size = driver.manage().window().getSize();
 //        int startX = 500;

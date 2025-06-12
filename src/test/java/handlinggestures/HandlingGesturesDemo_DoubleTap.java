@@ -38,12 +38,12 @@ public class HandlingGesturesDemo_DoubleTap {
         WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"));
 
         // gesture way of handling double tap
-        doubleTap(driver, element);
+//        doubleTap(driver, element);
 
         //alternative for double tap
-//        Actions act = new Actions(driver);
+        Actions act = new Actions(driver);
 //        act.doubleClick(element).pause(Duration.ofMillis(500)).build().perform();
-//        act.click(element).pause(Duration.ofMillis(500)).click(element).build().perform();
+//        act.click(element).pause(Duration.ofMillis(5)).click(element).build().perform();
 
 
         Thread.sleep(5000);
@@ -55,7 +55,7 @@ public class HandlingGesturesDemo_DoubleTap {
 
     }
 
-    public static void doubleTap(AndroidDriver driver, WebElement element){
+    public static void doubleTap(AndroidDriver driver, WebElement element) {
         //Perform a double tap action
         Point location = element.getLocation();
         Dimension size = element.getSize();
@@ -68,7 +68,9 @@ public class HandlingGesturesDemo_DoubleTap {
                 .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
                 .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
                 .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
-                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
+                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
         driver.perform(Collections.singletonList(seq));
         System.out.println("-----Execution complete-------");
     }

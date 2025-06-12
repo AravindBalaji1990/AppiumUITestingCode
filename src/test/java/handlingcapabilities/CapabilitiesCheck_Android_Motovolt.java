@@ -21,8 +21,8 @@ public class CapabilitiesCheck_Android_Motovolt {
 
 //        options.withBrowserName("chrome"); // hybrid applicaiton where we need to choose the browser on which the web app will be loaded
 
-        options.autoGrantPermissions();// no popup to select the location
-//        options.setAutoGrantPermissions(false);// grant permission - true or false
+//        options.autoGrantPermissions();// no popup to select the location
+        options.setAutoGrantPermissions(false);// grant permission - true or false
 
 //        options.setFullReset(true); // if true cache willbe cleared if false it will not be cleared
         options.fullReset();// app cache clearing

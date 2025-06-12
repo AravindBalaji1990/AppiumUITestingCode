@@ -27,6 +27,7 @@ public class HandlingGesturesDemo_SingleTap {
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.setAppPackage("io.appium.android.apis");
         options.setAppActivity("io.appium.android.apis.ApiDemos");
+//        options.nativeWebScreenshot();
 
 //        options.autoGrantPermissions();
 //        options.setIgnoreHiddenApiPolicyError(true);
@@ -50,17 +51,18 @@ public class HandlingGesturesDemo_SingleTap {
 //        element.click();
 
         //alternative way -2
-//        Actions act = new Actions(driver);
+        Actions act = new Actions(driver);
 //        act.moveToElement(element).click().build().perform();
-//        act.click(element).build().perform();
+        act.click(element).build().perform();
 
         //Perform a tap action
+//        Thread.sleep(5000);
 //        singleTap(element, driver);
 
         // click with javascript executor  will not work with mobile applciaiton
         // this si not a part of UiAutomator2Options/AndroidDriver
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("argument[0].click();",element);
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("argument[0].click();",element);
 
         Thread.sleep(5000);
         driver.quit();
@@ -74,14 +76,20 @@ public class HandlingGesturesDemo_SingleTap {
     }
 
     public static void singleTap(WebElement element, AndroidDriver driver) {
+        // Point function to identify the lement location
         Point location = element.getLocation();
         System.out.println("the location the element " + location);
+
+        // get the width and height of the element onthe screen
         Dimension size = element.getSize();
         System.out.println("the size the element " + size);
+
+        // get the center point of the element
         Point centerofelement = getCenterElement(location, size);
         System.out.println("center of the element : " + centerofelement);
 
         // we need to perform a touch action
+        //w3c Actions  - this is avialabel from 2.x Appium
         PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
         // we will perform the series of actions on the element
         Sequence seq = new Sequence(touchaction1, 1)

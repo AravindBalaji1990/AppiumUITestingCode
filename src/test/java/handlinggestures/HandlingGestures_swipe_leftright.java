@@ -26,9 +26,11 @@ public class HandlingGestures_swipe_leftright {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
+//        options.setUdid("29221JEGR00379");
         options.setUdid("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-        options.setAutoGrantPermissions(true);// to allow the location
+        options.setAutoGrantPermissions(true);// to allow the location to true
+        options.setIgnoreHiddenApiPolicyError(true);
         options.setAppPackage("co.motovolt.motovoltapp");
         options.setAppActivity("co.motovolt.motovoltapp.MainActivity");
 
@@ -36,16 +38,16 @@ public class HandlingGestures_swipe_leftright {
         // calling the andorid driver to run the app̵
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
 
-
+        Thread.sleep(5000);
         //we are going to swipe on a specific element to do swipe gestures
         WebElement ele = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup/following-sibling::android.widget.TextView[@text='Drive Less, e-Cycle More!']/preceding-sibling::android.view.ViewGroup/android.widget.ImageView"));
         // custom function
         swipeLeft(driver, ele);
 
-//        Thread.sleep(5000);
+        Thread.sleep(5000);
 
-//        WebElement ele2 = driver.findElement(AppiumBy.xpath("//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.widget.ImageView"));
-//        swipeRight(driver, ele2);
+        WebElement ele2 = driver.findElement(AppiumBy.xpath("//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.widget.ImageView"));
+        swipeRight(driver, ele2);
 
 //        WebElement ele3 = driver.findElement(AppiumBy.xpath("//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageView"));
 //        swipeLeft(driver, ele3);
@@ -62,10 +64,8 @@ public class HandlingGestures_swipe_leftright {
 
     public static void swipeLeft(AndroidDriver driver, WebElement ele) {
         int startX = ele.getRect().x + (ele.getSize().width * 3 / 4);
-        System.out.println(startX);
         int startY = ele.getRect().y + (ele.getSize().height / 2);
         int endX = ele.getRect().x + (ele.getSize().width / 4);
-        System.out.println(endX);
         int endY = ele.getRect().y + (ele.getSize().height / 2);
 
         PointerInput finger1 = new PointerInput(PointerInput.Kind.TOUCH, "touch1");
