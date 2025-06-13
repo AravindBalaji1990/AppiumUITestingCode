@@ -30,9 +30,6 @@ public class HandlingGesturesDemo_LongPress {
         options.setAppPackage("io.appium.android.apis");
         options.setAppActivity("io.appium.android.apis.ApiDemos");
 
-//        options.setAppActivity("io.appium.android.apis.view.ExpandableList1");
-
-//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
 
         // calling the andorid driver to run the app
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
@@ -43,19 +40,19 @@ public class HandlingGesturesDemo_LongPress {
 
         driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='1. Custom Adapter']")).click();
 
-        WebElement element =   driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='People Names']"));
+        WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='People Names']"));
 
         //long press gesture handling
-        Point location = element.getLocation();
-        Dimension size = element.getSize();
-        Point centerofelement = getCenterElement(location, size);
+        Point location = element.getLocation(); // position of hte element in the screen
+        Dimension size = element.getSize(); // height and width of the element
+        Point centerofelement = getCenterElement(location, size); // do the action on the center of the element
 
-
+        //w3c standards - doing a gestures - this part of appium 2.x
         PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
         Sequence seq = new Sequence(touchaction1, 1)
-                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(),centerofelement))
+                .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelement))
                 .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                    .addAction(new Pause(touchaction1,Duration.ofSeconds(3)))// this is the code that makes to do thelong press
+                .addAction(new Pause(touchaction1, Duration.ofSeconds(5)))// this is the code that makes to do thelong press
                 .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
         driver.perform(Collections.singletonList(seq));
 
@@ -65,9 +62,9 @@ public class HandlingGesturesDemo_LongPress {
 //        act.clickAndHold(element).pause(Duration.ofSeconds(4)).build().perform();
 //
         System.out.println(driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id=\"android:id/title\" and @text=\"Sample menu\"]")).isDisplayed());
+        System.out.println(driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id=\"android:id/title\" and @text=\"Sample menu\"]")).isEnabled());
 
         Thread.sleep(3000);
-
         driver.quit();
     }
 

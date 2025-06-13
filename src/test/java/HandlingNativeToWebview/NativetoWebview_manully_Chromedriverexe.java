@@ -32,7 +32,7 @@ public class NativetoWebview_manully_Chromedriverexe {
 
 //        options.setIgnoreHiddenApiPolicyError(true);
 //        options.setAutoWebview(true);
-        options.setChromedriverExecutable(System.getProperty("user.dir") + "/src/test/resources/browser/chromedriver_134");
+        options.setChromedriverExecutable(System.getProperty("user.dir") + "/src/test/resources/browser/chromedriver_174");
 //        options.setCapability("chromedriverAutodownload",true);
 
 
@@ -58,10 +58,10 @@ public class NativetoWebview_manully_Chromedriverexe {
         driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc=\"test-GO TO SITE\"]")).click();
         Thread.sleep(5000);
 
-        //check the current context
+        //check the current context - whether its webview or native
         System.out.println("where i am :" + driver.getContext());
 
-        //check for any other webview available
+        //check for any other webview available - gets the webview or native view
         System.out.println("how many handles are avaiable :  " + driver.getContextHandles());
 
         //check for any other webview available
@@ -71,7 +71,7 @@ public class NativetoWebview_manully_Chromedriverexe {
         for (String webviewcontent : handles) {
             if (webviewcontent.startsWith("WEBVIEW")) {
                 driver.context("WEBVIEW_com.swaglabsmobileapp");
-                System.out.println(driver.getPageSource());
+                System.out.println(driver.getPageSource());// get the web page source
                 driver.findElement(By.xpath("//textarea[@name='q']")).sendKeys("test text");
                 break;
             }
@@ -85,7 +85,7 @@ public class NativetoWebview_manully_Chromedriverexe {
         //switch from Webview to native
         driver.context("NATIVE_APP");
         Thread.sleep(3000);
-        driver.navigate().back();
+        driver.navigate().back();// simulating hte behaviour of back button in andoird
         Thread.sleep(3000);
         driver.navigate().back();
 

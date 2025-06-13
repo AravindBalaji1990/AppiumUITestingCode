@@ -22,7 +22,7 @@ import java.util.Collections;
 public class HandlingGesturesDemo_LongPress_ios {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         XCUITestOptions options = new XCUITestOptions();
-        options.setUdid("08BBF8F2-37A6-42E0-AB9F-65C5E6AEC31B");
+        options.setUdid("27139D21-EB13-48EE-9C88-C786E92AB0E0");
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/ios-app.zip");
 //        options.setAutoWebview(true);
 //        options.setAppPushTimeout(Duration.ofMillis(50000));

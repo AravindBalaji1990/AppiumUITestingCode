@@ -19,6 +19,8 @@ public class HandlingElementsBasics_Android {
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.setAppActivity("io.appium.android.apis.ApiDemos");
         options.setAppPackage("io.appium.android.apis");
+//        options.setAutoGrantPermissions(true);
+        options.autoGrantPermissions();
         options.setCapability("","");
 
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), options);
