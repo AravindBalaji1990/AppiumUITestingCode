@@ -72,7 +72,7 @@ public class NativetoWebview_manully_Chromedriverexe {
             if (webviewcontent.startsWith("WEBVIEW")) {
                 driver.context("WEBVIEW_com.swaglabsmobileapp");
                 System.out.println(driver.getPageSource());// get the web page source
-                driver.findElement(By.xpath("//textarea[@name='q']")).sendKeys("test text");
+                driver.findElement(By.xpath("//textarea[@name='q']")).sendKeys("appium");
                 break;
             }
         }

@@ -27,7 +27,7 @@ public class NativetoWebview1 {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         XCUITestOptions options = new XCUITestOptions();
         options.setPlatformName("IOS");
-        options.setUdid("08BBF8F2-37A6-42E0-AB9F-65C5E6AEC31B");
+        options.setUdid("27139D21-EB13-48EE-9C88-C786E92AB0E0");
         options.setAutomationName(AutomationName.IOS_XCUI_TEST);
 //        options.autoWebview();
 //        options.autoGrantPermissions();
@@ -47,12 +47,18 @@ public class NativetoWebview1 {
 
         Thread.sleep(5000);
 //        driver.findElement(AppiumBy.xpath("//XCUIElementTypeButton[@name=\"tab bar option menu\"]")).click();
-        driver.findElement(AppiumBy.accessibilityId("tab bar option menu")).click();
+        WebElement menu = driver.findElement(AppiumBy.accessibilityId("tab bar option menu"));
+        singleTap(driver, menu);
+//        driver.findElement(AppiumBy.accessibilityId("tab bar option menu")).click();
         Thread.sleep(3000);
 //        driver.findElement(AppiumBy.xpath("//XCUIElementTypeOther[@name=\"menu item webview\"]")).click();
-        driver.findElement(AppiumBy.accessibilityId("menu item webview")).click();
+       WebElement webview =  driver.findElement(AppiumBy.accessibilityId("menu item webview"));
+       singleTap(driver, webview);
         Thread.sleep(5000);
-        driver.findElement(AppiumBy.xpath("//XCUIElementTypeTextField[@name=\"URL input field\"]")).clear();
+        WebElement urlfield = driver.findElement(AppiumBy.xpath("//XCUIElementTypeTextField[@name=\"URL input field\"]"));
+        urlfield.clear();
+        singleTap(driver, urlfield);
+
         driver.findElement(AppiumBy.xpath("//XCUIElementTypeTextField[@name=\"URL input field\"]")).sendKeys("https://www.bing.com");
         Thread.sleep(3000);
         //keywboard return
@@ -60,8 +66,6 @@ public class NativetoWebview1 {
         Thread.sleep(5000);
         WebElement btn_gotosite = driver.findElement(AppiumBy.xpath("//XCUIElementTypeOther[@name=\"Go To Site button\"]"));
 
-//        Actions act = new Actions(driver);
-//        act.click(driver.findElement(AppiumBy.xpath("//XCUIElementTypeOther[@name=\"Go To Site button\"]"))).build().perform();
         singleTap(driver, btn_gotosite);
 
         Thread.sleep(10000);
