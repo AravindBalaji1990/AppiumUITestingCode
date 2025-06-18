@@ -23,14 +23,17 @@ public class HandlingWifi {
         options.setAppWaitDuration(Duration.ofMillis(50000));
 
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         // it turn off the wifi if its on
+        // vice versa if wifi is on it will tunr it off
         driver.toggleWifi();
 
         Thread.sleep(10000);
         driver.toggleWifi();
 
         Thread.sleep(5000);
-       ConnectionState con =  driver.getConnection();
+       ConnectionState con =  driver.getConnection(); // if you want to retirvet he connection state of the device
         System.out.println( "state of wifi : " +con.isWiFiEnabled());// to check whter wifi is enabled/disabled
 
         System.out.println("state of airplanemode : " +con.isAirplaneModeEnabled()); // to check whether the airplane mode is enabled/disabled
@@ -44,7 +47,7 @@ public class HandlingWifi {
 
         // this will turn on the mobile data
         driver.toggleData();
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
 
 
         driver.quit();

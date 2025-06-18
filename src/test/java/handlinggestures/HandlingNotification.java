@@ -1,11 +1,13 @@
 package handlinggestures;
 
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.remote.AutomationName;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
@@ -13,6 +15,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -27,7 +31,7 @@ public class HandlingNotification {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setUdid("29221JEGR00379");
+        options.setUdid("55ZTINFYRW5T6DNR");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.setAppPackage("com.flipkart.android");
         options.setAppActivity("com.flipkart.android.activity.HomeFragmentHolderActivity");
@@ -40,9 +44,13 @@ public class HandlingNotification {
 
 
         // this will clear the content of the notifications
-        Thread.sleep(5000);
+
         driver.openNotifications();// open the notificaiton panel
         try {
+//            WebElement ele  =driver.findElement(AppiumBy.xpath("//*[@text=\"Clear all\"]"));
+//            ele.click();
+
+            checkElementPresense(driver, AppiumBy.xpath("//*[@text=\"Clear all\"]"), 20);
             driver.findElement(AppiumBy.xpath("//*[@text=\"Clear all\"]")).click();
         } catch (Exception e) {
             System.out.println("no clear button visible");
@@ -187,5 +195,16 @@ public class HandlingNotification {
 
         // Perform the action
         driver.perform(Arrays.asList(swipe));
+    }
+
+    public static boolean checkElementPresense(AppiumDriver driver, By element, long seconds) {
+        boolean data = false;
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+        WebElement dataelement = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+        if (dataelement != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

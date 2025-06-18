@@ -21,7 +21,7 @@ public class WaittimeDemo_FluentWait {
     public static void main(String[] args) throws MalformedURLException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("29221JEGR00379");
+        options.setDeviceName("55ZTINFYRW5T6DNR");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.setAppPackage("io.appium.android.apis");
         options.setAppActivity("io.appium.android.apis.ApiDemos");

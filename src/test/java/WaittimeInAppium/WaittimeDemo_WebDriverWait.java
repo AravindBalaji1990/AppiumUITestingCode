@@ -20,20 +20,22 @@ public class WaittimeDemo_WebDriverWait {
     public static void main(String[] args) throws MalformedURLException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("emulator-5554");
+        options.setDeviceName("55ZTINFYRW5T6DNR");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.setAppPackage("io.appium.android.apis");
         options.setAppActivity("io.appium.android.apis.ApiDemos");
-        options.setAppWaitForLaunch(true);
         options.setAutoGrantPermissions(true);
-        options.setAppWaitDuration(Duration.ofMillis(50000));
+        options.setGpsEnabled(true);
+//        options.setAppWaitForLaunch(true);
+//        options.setAutoGrantPermissions(true);
+//        options.setAppWaitDuration(Duration.ofMillis(50000));
 
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
 
         WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"));
 
 //        System.out.println(checkElementVisibility(driver, element, 30));
-        System.out.println(checkElementSize(driver, AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"),30, 1));
+        System.out.println(checkElementPresense(driver, AppiumBy.xpath("//android.widget.TextView[@content-desc='View']"),15));
 
 
         driver.quit();

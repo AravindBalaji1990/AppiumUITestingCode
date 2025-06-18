@@ -17,11 +17,6 @@ public class RunAppinBackground {
         options.setPlatformName("Android");
         options.setUdid("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
-//        options.setAppPackage("com.saucelabs.mydemoapp.rn");
-//        options.setAppActivity("com.saucelabs.mydemoapp.rn.MainActivity");
-//        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
-
         options.setAppPackage("io.appium.android.apis");
         options.setAppActivity("io.appium.android.apis.ApiDemos");
         options.setAppWaitForLaunch(true);
@@ -34,13 +29,15 @@ public class RunAppinBackground {
         WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Views']"));
         element.click();
 
-        //it makes the app to keep running in back ground
-//        driver.runAppInBackground(Duration.ofSeconds(30));// till 10 seocnds the app will be running in background
+        //it makes the app to keep running in background
+//        driver.runAppInBackground(Duration.ofSeconds(10));// till 10 seocnds the app will be running in background
 
         //after 10 seconds
         // activateApp - to open any application
-//        driver.activateApp("com.flipkart.android");
-//        System.out.println("the new app opened : " + driver.getCurrentPackage());
+        driver.activateApp("com.flipkart.android");
+        System.out.println("the new app opened : " + driver.getCurrentPackage());
+        Thread.sleep(3000);
+        driver.terminateApp("com.flipkart.android");
 
         Thread.sleep(5000);
         driver.activateApp("io.appium.android.apis");
