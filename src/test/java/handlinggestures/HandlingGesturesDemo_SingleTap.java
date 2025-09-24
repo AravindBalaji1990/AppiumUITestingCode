@@ -23,10 +23,10 @@ public class HandlingGesturesDemo_SingleTap {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("29221JEGR00379");
+        options.setDeviceName("H0C9FI1LV01B0300012");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
-        options.setAppPackage("io.appium.android.apis");
-        options.setAppActivity("io.appium.android.apis.ApiDemos");
+        options.setAppPackage("com.swaglabsmobileapp");
+        options.setAppActivity("com.swaglabsmobileapp.MainActivity");
 //        options.nativeWebScreenshot();
 
 //        options.autoGrantPermissions();
@@ -39,7 +39,10 @@ public class HandlingGesturesDemo_SingleTap {
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), options);
 
         Thread.sleep(5000);
-        WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"));
+        driver.findElement(AppiumBy.xpath("//android.widget.EditText[@content-desc=\"test-Username\"]")).sendKeys("standard_user");
+        Thread.sleep(5000);
+
+        driver.findElement(AppiumBy.xpath("//android.widget.EditText[@content-desc=\"test-Password\"]")).sendKeys("secret_sauce");
 //        WebElement element = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Views\"))"));
 //        element.click();
 //        driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView")).click();
@@ -51,13 +54,14 @@ public class HandlingGesturesDemo_SingleTap {
 //        element.click();
 
         //alternative way -2
-        Actions act = new Actions(driver);
+//        Actions act = new Actions(driver);
 //        act.moveToElement(element).click().build().perform();
-        act.click(element).build().perform();
+//        act.click(element).build().perform();
 
+        WebElement loginbutton = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text=\"LOGIN\"]"));
         //Perform a tap action
-//        Thread.sleep(5000);
-//        singleTap(element, driver);
+        Thread.sleep(5000);
+        singleTap(loginbutton, driver);
 
         // click with javascript executor  will not work with mobile applciaiton
         // this si not a part of UiAutomator2Options/AndroidDriver
@@ -76,9 +80,9 @@ public class HandlingGesturesDemo_SingleTap {
     }
 
     public static void singleTap(WebElement element, AndroidDriver driver) {
-        // Point function to identify the lement location
+        // Point function to identify the lement location on device screen
         Point location = element.getLocation();
-        System.out.println("the location the element " + location);
+        System.out.println("the location the element on the deivce " + location);
 
         // get the width and height of the element onthe screen
         Dimension size = element.getSize();
