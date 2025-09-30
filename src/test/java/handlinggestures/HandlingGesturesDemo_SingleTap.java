@@ -43,30 +43,27 @@ public class HandlingGesturesDemo_SingleTap {
         Thread.sleep(5000);
 
         driver.findElement(AppiumBy.xpath("//android.widget.EditText[@content-desc=\"test-Password\"]")).sendKeys("secret_sauce");
-//        WebElement element = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().description(\"Views\"))"));
-//        element.click();
-//        driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView")).click();
-//        System.out.println("to chec kthe attribute vbalue :" +driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']")).getAttribute("content-desc"));
-//        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView"));
-        ;
-
-        // alternative way - 1
-//        element.click();
-
-        //alternative way -2
-//        Actions act = new Actions(driver);
-//        act.moveToElement(element).click().build().perform();
-//        act.click(element).build().perform();
 
         WebElement loginbutton = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text=\"LOGIN\"]"));
         //Perform a tap action
         Thread.sleep(5000);
-        singleTap(loginbutton, driver);
+//        singleTap(loginbutton, driver);
+//        alternative way - 1
+//        loginbutton.click();
 
-        // click with javascript executor  will not work with mobile applciaiton
-        // this si not a part of UiAutomator2Options/AndroidDriver
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("argument[0].click();",element);
+        // you can try this if the click has any exception
+        // then go with a gesture
+//        try {
+//            loginbutton.click();
+//        } catch (Exception e) {
+//            singleTap(loginbutton, driver);
+//        }
+
+        //alternative way -2
+//        Actions act = new Actions(driver);
+//        act.moveToElement(loginbutton).click().build().perform();
+//        act.click(loginbutton).build().perform();
+
 
         Thread.sleep(5000);
         driver.quit();
@@ -105,11 +102,7 @@ public class HandlingGesturesDemo_SingleTap {
                 .addAction(new Pause(touchaction1, Duration.ofMillis(500)))
 //                // this simulates the relase of tap/finger on the element
                 .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-//        .addAction(new Pause(touchaction1, Duration.ofMillis(500)))
-//                .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-//                .addAction(new Pause(touchaction1, Duration.ofMillis(500)))
-////                // this simulates the relase of tap/finger on the element
-//                .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+//
 
 //
 //        // this will perfomr the series of actions

@@ -22,13 +22,13 @@ public class HandlingGesturesDemo_DoubleTap {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setDeviceName("29221JEGR00379");
+        options.setDeviceName("H0C9FI1LV01B0300012");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
 //        options.setCapability("PlatformVersion", "12");
         options.setAppPackage("io.appium.android.apis");
         options.setAppActivity("io.appium.android.apis.ApiDemos");
-        options.setAppWaitForLaunch(true);
-        options.setAppWaitDuration(Duration.ofMillis(50000));
+//        options.setAppWaitForLaunch(true);
+//        options.setAppWaitDuration(Duration.ofMillis(50000));
 
 
         // calling the andorid driver to run the app
@@ -38,10 +38,10 @@ public class HandlingGesturesDemo_DoubleTap {
         WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Views']"));
 
         // gesture way of handling double tap
-//        doubleTap(driver, element);
+        doubleTap(driver, element);
 
         //alternative for double tap
-        Actions act = new Actions(driver);
+//        Actions act = new Actions(driver);
 //        act.doubleClick(element).pause(Duration.ofMillis(500)).build().perform();
 //        act.click(element).pause(Duration.ofMillis(5)).click(element).build().perform();
 
@@ -52,24 +52,25 @@ public class HandlingGesturesDemo_DoubleTap {
 
     public static Point getCenterElement(Point location, Dimension dim) {
         return new Point(location.getX() + dim.getWidth() / 2, location.getY() + dim.getHeight() / 2);
-
     }
 
     public static void doubleTap(AndroidDriver driver, WebElement element) {
         //Perform a double tap action
-        Point location = element.getLocation();
-        Dimension size = element.getSize();
+        Point location = element.getLocation();// onthe device
+        Dimension size = element.getSize(); // exact dimeniton of hte element itself
         Point centerofelement = getCenterElement(location, size);
 
+
+        // w3c standards
         PointerInput touchaction1 = new PointerInput(PointerInput.Kind.TOUCH, "fingertouch1");
         Sequence seq = new Sequence(touchaction1, 1)
                 .addAction(touchaction1.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), centerofelement))
                 .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
+                .addAction(new Pause(touchaction1, Duration.ofMillis(500)))
                 .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
+                .addAction(new Pause(touchaction1, Duration.ofMillis(500)))
                 .addAction(touchaction1.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(new Pause(touchaction1, Duration.ofMillis(5000)))
+                .addAction(new Pause(touchaction1, Duration.ofMillis(500)))
                 .addAction(touchaction1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
         driver.perform(Collections.singletonList(seq));
         System.out.println("-----Execution complete-------");
