@@ -31,7 +31,7 @@ public class HandlingNotification {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName("Android");
-        options.setUdid("55ZTINFYRW5T6DNR");
+        options.setUdid("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.setAppPackage("com.flipkart.android");
         options.setAppActivity("com.flipkart.android.activity.HomeFragmentHolderActivity");
@@ -44,18 +44,15 @@ public class HandlingNotification {
 
 
         // this will clear the content of the notifications
-
         driver.openNotifications();// open the notificaiton panel
         try {
-//            WebElement ele  =driver.findElement(AppiumBy.xpath("//*[@text=\"Clear all\"]"));
-//            ele.click();
-
-            checkElementPresense(driver, AppiumBy.xpath("//*[@text=\"Clear all\"]"), 20);
+            checkElementPresense(driver, AppiumBy.xpath("//*[@text=\"Clear all\"]"), 5);
             driver.findElement(AppiumBy.xpath("//*[@text=\"Clear all\"]")).click();
         } catch (Exception e) {
             System.out.println("no clear button visible");
-            swipeUp(driver);
+            driver.navigate().back();
         }
+
 
         Thread.sleep(5000);
 
@@ -73,14 +70,14 @@ public class HandlingNotification {
         WebElement ph = driver.findElement(AppiumBy.xpath("//android.widget.EditText[@content-desc=\"Phone Number\"]"));
 
         // if keystroke is not identified then click onthe text box and then try keystroke
-//        ph.click();
+        ph.click();
 
-        Actions act = new Actions(driver);
-        act.click(ph).build().perform();
+//        Actions act = new Actions(driver);
+//        act.click(ph).build().perform();
 
 //        driver.hideKeyboard();// this will hide the keyboard
 //        ph.sendKeys("8939624446"); // this will throw error
-        String num = "8939624446";
+//        String num = "8939624446";
         // Keyboard action simulator to enter the phone number
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_8));
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_9));
@@ -93,34 +90,7 @@ public class HandlingNotification {
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_4));
         driver.pressKey(new KeyEvent(AndroidKey.DIGIT_6));
 
-        for (int i = 0; i < num.length(); i++) {
-            switch (num) {
-                case "1":
-                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
-                case "2":
-                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
-                case "3":
-                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
-                case "4":
-                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
-                case "5":
-                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
-                case "6":
-                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
-                case "7":
-                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
-                case "8":
-                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
-                case "9":
-                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
-                case "0":
-                    driver.pressKey(new KeyEvent(AndroidKey.DIGIT_1));
-            }
-        }
-        // in certain instance the sendkeys will not work
-//        inputphonenumber.sendKeys("8939624446");
-        // in Mobile automation the javascript executor will not work
-//        driver.executeScript("arguments[0].value='8939624446';", ph);
+
 
         Thread.sleep(5000);
 
@@ -129,13 +99,6 @@ public class HandlingNotification {
 
         // openNotificaitons -> its inbuilt function
         driver.openNotifications();
-//        Thread.sleep(2000);
-
-        try {
-            driver.findElement(AppiumBy.xpath("//*[@text='Clear all']")).click();
-        } catch (Exception e) {
-        }
-
         Thread.sleep(5000);
 
 
@@ -166,6 +129,11 @@ public class HandlingNotification {
 //        // to close the notificaiotn dn ago back to the app alternative way
         driver.navigate().back();
 
+        Thread.sleep(3000);
+
+        driver.findElement(AppiumBy.xpath("//android.widget.EditText[@resource-id=\"com.flipkart.android:id/otp_view\"]")).sendKeys(smsotp);
+        Thread.sleep(3000);
+        driver.findElement(AppiumBy.xpath("//android.widget.TextView[@resource-id=\"com.flipkart.android:id/button\"]")).click();
 
         Thread.sleep(5000);
         driver.quit();

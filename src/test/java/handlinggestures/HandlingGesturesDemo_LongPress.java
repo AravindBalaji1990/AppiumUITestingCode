@@ -34,6 +34,9 @@ public class HandlingGesturesDemo_LongPress {
         // calling the andorid driver to run the app
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
         Thread.sleep(5000);
+
+        // to retrive the items fromthe clipbaord of the device
+        System.out.println("the items availabl ein clipbaord : " + driver.getClipboardText().toString());
         driver.findElement(AppiumBy.xpath("//*[@content-desc='Views']")).click();
 //        Thread.sleep(5000);
         driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc='Expandable Lists']")).click();

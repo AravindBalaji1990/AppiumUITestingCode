@@ -16,6 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Collections;
+import java.util.List;
 
 public class HandlingGestureDemo_swipe_ToBottom {
 
@@ -25,8 +26,8 @@ public class HandlingGestureDemo_swipe_ToBottom {
         options.setDeviceName("29221JEGR00379");
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/Sample App/android-app.apk");
-        options.setAppWaitForLaunch(true);
-        options.setAppWaitDuration(Duration.ofMillis(50000));
+//        options.setAppWaitForLaunch(true);
+//        options.setAppWaitDuration(Duration.ofMillis(50000));
         options.setAppPackage("io.appium.android.apis");
         options.setAppActivity("io.appium.android.apis.ApiDemos");
 
@@ -37,8 +38,28 @@ public class HandlingGestureDemo_swipe_ToBottom {
 
 //        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView"));
         WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Views\"]\n"));
-        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(element));
+//        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(element));
         element.click();
+
+
+   for(int i =0;i<=10;i++){
+       List<WebElement> scrolltillelement = driver.findElements(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Tabs\"]"));
+       if(scrolltillelement.size()>0){
+           return;
+       }else{
+           System.out.println("swipe is done : " +i);
+           scrolltoBottom(driver);
+
+       }
+   }
+
+
+        Thread.sleep(3000);
+        driver.quit();
+    }
+
+
+    public static void scrolltoBottom(AndroidDriver driver){
         //Scroll/swipe action - swipe  up
         Dimension dim = driver.manage().window().getSize();
         int start1 = dim.getWidth()/2;
@@ -56,8 +77,5 @@ public class HandlingGestureDemo_swipe_ToBottom {
                 .addAction(finger1.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
         driver.perform(Collections.singletonList(seq));
         System.out.println("-----Swipe Ended-----");
-
-        Thread.sleep(3000);
-        driver.quit();
     }
 }
