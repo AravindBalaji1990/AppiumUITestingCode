@@ -17,7 +17,7 @@ public class WebviewCheck_safari {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         XCUITestOptions options = new XCUITestOptions();
         options.setPlatformName("IOS");
-        options.setUdid("27139D21-EB13-48EE-9C88-C786E92AB0E0");
+        options.setUdid("6BD2B23F-D0F8-4688-A9BA-95749D84F95E");
         options.setAutomationName(AutomationName.IOS_XCUI_TEST);
         // to open chrom browser inside the device below 2 options are mandatory
         options.withBrowserName("Safari");
@@ -28,7 +28,7 @@ public class WebviewCheck_safari {
         //code for chrome
         driver.get("https://bing.com");
         Thread.sleep(5000);
-        System.out.println(driver.getPageSource());
+        System.out.println(driver.getPageSource()); // this will get the page source of the browser website that has opened
         driver.findElement(By.xpath("//textarea[@id='sb_form_q']")).sendKeys("appium");
         Thread.sleep(5000);
         driver.quit();

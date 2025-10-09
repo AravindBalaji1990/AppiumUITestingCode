@@ -22,12 +22,14 @@ public class CapabilitiesCheck_Android {
 //        options.setAppActivity("io.appium.android.apis.ApiDemos.Media");
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/SampleApp/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
 
-        options.autoGrantPermissions();
+//        options.autoGrantPermissions();
         options.setAutoGrantPermissions(true);
         options.setAppWaitDuration(Duration.ofSeconds(60));
         options.setNewCommandTimeout(Duration.ofSeconds(40));
         options.setAppWaitForLaunch(true);
         options.setFullReset(true);
+//        options.setCapability("","");
+//        options.
 
 
 

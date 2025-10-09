@@ -49,10 +49,10 @@ public class HandlingCodeWayToStartAppium_alternative {
             // calling the andorid driver to run the app̵
             driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
 
-            driver.unlockDevice();
+//            driver.unlockDevice();
 //        WebElement element = driver.findElement(AppiumBy.xpath("//android.view.ViewGroup[@content-desc='open menu']/android.widget.ImageView"));
             WebElement element = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Views\"]\n"));
-            new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(element));
+//            new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(element));
             element.click();
             //Scroll/swipe action
             Dimension dim = driver.manage().window().getSize();

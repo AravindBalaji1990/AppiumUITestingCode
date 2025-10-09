@@ -21,12 +21,12 @@ public class CapabilitiesCheck_Ios {
 //        options.setApp("/Users/aravindbalaji/Documents/Appium/SampleApp/iOS-Simulator-MyRNDemoApp.1.3.0-162.zip");
 
         options.setUdid("27139D21-EB13-48EE-9C88-C786E92AB0E0");
-//        options.setAutoAcceptAlerts(true);// any pop up comes
+        options.setAutoAcceptAlerts(true);// any pop up comes
 //        options.withBrowserName("Safari"); // you are going to test something on mobile browser
 //        options.setAutoWebview(true);
-        options.setUseNewWDA(false); // this will not install webdriver agent agiain and again it will try to re-use if the webdriver agent is valid
-//        options.setForceAppLaunch(true);// for app to launch
-//        options.setNewCommandTimeout(Duration.ofSeconds(40));// any command that will be execute will have default timed out - max time
+        options.setUseNewWDA(false);// this will not install webdriver agent agiain and again it will try to re-use if the webdriver agent is valid
+        options.setForceAppLaunch(true);// for app to launch
+        options.setNewCommandTimeout(Duration.ofSeconds(40));// any command that will be execute will have default timed out - max time
 //        options.setCapability("","");// any custom capability for hte app you can mentionhere
 
 //        options.setDeviceName("");// Not recomended to use instead use setUdid - Andrioid if we do not meniton the udid it might run on any device that is connnect

@@ -33,6 +33,7 @@ public class HandlingGestures_swipe_leftright {
         options.setAppPackage("co.motovolt.motovoltapp");
         options.setAppActivity("co.motovolt.motovoltapp.MainActivity");
         options.setAutoGrantPermissions(true);// to allow the location to true
+        options.autoGrantPermissions();// to allow the location to true
 //        options.setIgnoreHiddenApiPolicyError(true);// this one will beused when native android application is used - oppo/samsung/vivo
 //        options.noReset(); // it will clear the app cache and start it as a fresh
 

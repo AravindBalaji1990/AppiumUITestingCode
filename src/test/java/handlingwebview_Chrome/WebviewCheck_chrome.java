@@ -20,7 +20,7 @@ public class WebviewCheck_chrome {
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         // to open chrom browser inside the device below 2 options are mandatory
         options.withBrowserName("Chrome");
-//        options.setChromedriverExecutable(System.getProperty("user.dir") + "/src/test/resources/browser/chromedriver_174");
+//        options.setChromedriverExecutable(System.getProperty("user.dir") + "/src/test/resources/browser/chromedriver_141");
 
 
         AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), options);
