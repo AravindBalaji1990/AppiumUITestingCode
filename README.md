@@ -40,12 +40,13 @@ This repository contains a utility-focused Appium UI testing framework in Java u
 - Appium Inspector for element locators  
 
 ### Installation
-```bash
+bash
 git clone https://github.com/AravindBalaji1990/AppiumUITestingCode.git
 cd AppiumUITestingCode
 mvn test
 
-### Project Structure
+📁 Project Structure
+
 AppiumUITestingCode
  ┣ src/
  ┃ ┣ main/java — Driver utils & helper components
@@ -53,7 +54,8 @@ AppiumUITestingCode
  ┃ ┣ resources — Config files (e.g., testng.xml)
  ┣ pom.xml — Maven configuration
 
-### Example Test Snippet
+🧪 Example Test Snippet
+
 @Test
 public void verifyLoginScreen() {
     loginPage.enterUsername("user1");
